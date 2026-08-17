@@ -1,0 +1,74 @@
+generated: '2026-08-17'
+method: searched
+source:
+- https://status.elium.com/
+- https://elium.com/pricing
+- https://elium.com/changelog
+- https://elium.com/trust/controls
+- https://learn.elium.com/reference/
+versioning:
+  scheme: none-published
+  current: null
+  detail: >-
+    Elium publishes no API version policy. There is no URI version segment, no version header and no
+    date-pinned version; the only version token in the whole surface is the OAuth scope name "apiv1".
+    Schema changes are communicated only as per-field Deprecated markers in the GraphQL reference.
+  docs: https://learn.elium.com/en/api/
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  detail: >-
+    No deprecation policy, no notice period, and no RFC 8594 Sunset/Deprecation header support is
+    documented. Five operations carry a Deprecated marker in the published GraphQL reference, with no
+    stated removal date. No Deprecation pointer is wired in apis.yml because there is no policy page to
+    point at - only individual deprecated fields.
+deprecated_operations:
+- {operation: statusStory, kind: query, source: 'https://learn.elium.com/reference/#query-statusStory'}
+- {operation: storyApprovalEdit, kind: mutation, source: 'https://learn.elium.com/reference/#mutation-storyApprovalEdit'}
+- {operation: storyMigrate, kind: mutation, source: 'https://learn.elium.com/reference/#mutation-storyMigrate'}
+- {operation: userFollow, kind: mutation, source: 'https://learn.elium.com/reference/#mutation-userFollow'}
+- {operation: userPresenceUpdated, kind: subscription, source: 'https://learn.elium.com/reference/#subscription-userPresenceUpdated'}
+sla:
+  url: https://elium.com/pricing
+  uptime_target: 99.5%
+  scope: Enterprise plan only
+  evidence: >-
+    The Enterprise tier on elium.com/pricing lists a "99.5% uptime SLA"; Team and Corporate list none.
+    elium.com/trust/controls adds that "the monthly uptime rate is guaranteed and monitored by an external
+    service. Availability metrics are published and contractually committed."
+  external_monitoring: true
+status_page:
+  url: https://status.elium.com/
+  provider: Atlassian Statuspage
+  http_status: 200
+  probed: '2026-08-17'
+  evidence: >-
+    status.elium.com resolves to a Statuspage customer host (wv5kg0vc5wp2.stspg-customer.com) and returns
+    200. It is linked from elium.com/trust and the site footer.
+incident_management:
+  documented: true
+  source: https://elium.com/trust/controls
+  detail: >-
+    "Priority-based SLAs with defined acknowledgement and resolution targets" for incidents, with
+    classification by severity, coordinated response, customer notification, and a mandatory post-incident
+    root-cause review.
+patching:
+  documented: true
+  detail: >-
+    "Patches are deployed transparently"; fixes are "prioritised and deployed within defined SLAs using
+    automated pipelines". Penetration tests are run regularly by independent third parties and
+    vulnerability scans are automated.
+changelog:
+  url: https://elium.com/changelog
+  detail: changelog/elium-changelog.yml
+support:
+  help_centre: https://help.elium.com/en/
+  developer_docs: https://learn.elium.com/en/api/
+  security_contact: security@elium.com
+gaps:
+- No API-specific changelog or release notes - the single published changelog is product-level.
+- No deprecation policy or sunset signalling, so a consumer of the five deprecated operations has no
+  notice window.
+- No published API versioning strategy at all, which for a GraphQL API leaves field removal as the only
+  observable breaking-change signal.

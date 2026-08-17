@@ -1,0 +1,44 @@
+generated: '2026-08-17'
+method: searched
+source: https://elium.com/changelog
+url: https://elium.com/changelog
+http_status: 200
+probed: '2026-08-17'
+scheme: dated
+scheme_detail: >-
+  Entries are dated ("3 June 2026"), product-level, and carry no version numbers. There is no semantic
+  version, no release train, and no separate API changelog or release-notes feed.
+current_version: null
+api_changelog: false
+api_changelog_note: >-
+  No API-specific changelog exists. Breaking changes to the GraphQL schema are not announced here; the only
+  schema-change signal Elium publishes is a per-field Deprecated marker in the reference (five operations -
+  see lifecycle/elium-lifecycle.yml).
+entry_count: 1
+entry_count_note: >-
+  Exactly one entry is published on the changelog page. Verified by fetching the rendered HTML and reading
+  its <time> and heading elements directly, not just the summary view; there is no pagination, archive link,
+  or additional entry behind it. A markdown twin (changelog.md) was probed and 404s, though Elium does serve
+  .md twins for blog posts and customer stories.
+entries:
+- date: '2026-06-03'
+  date_published: 3 June 2026
+  version: null
+  title: Connect your knowledge to any AI assistant
+  summary: >-
+    "Let ChatGPT, Claude, and other AI assistants securely query your Elium knowledge base through the
+    Model Context Protocol."
+  breaking: false
+  additions: [MCP server per platform instance, OAuth 2.0 authorization for MCP clients, Three read-only
+      MCP tools (FindRelevantArticles, FindSpecificArticles, ReadFullArticle)]
+  artifact: mcp/elium-mcp.yml
+related_release_surfaces:
+- url: https://elium.com/blog
+  kind: product-news blog
+  note: >-
+    Elium's substantive release history lives in blog posts rather than the changelog - for example "10
+    ways our AI knowledge management software got smarter" and "What is new at Elium - latest product
+    updates". These are undated in the index and not structured as release notes.
+- url: https://elium.com/trust/updates
+  kind: trust-centre updates
+  note: Security and compliance change log, separate from the product changelog.

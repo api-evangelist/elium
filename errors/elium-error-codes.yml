@@ -1,0 +1,161 @@
+generated: '2026-08-17'
+method: derived
+source:
+- https://learn.elium.com/reference/
+- https://learn.elium.com/en/api/main_concepts/errors
+format: graphql-mutation-errors
+rfc9457: false
+note: 'Elium is a GraphQL API and does not use RFC 9457 problem+json. Errors are returned in-band: every
+  mutation payload carries an errors[] array whose members implement the MutationError interface. Each
+  member exposes __typename (which error) and path (which input field). HTTP status stays 200 for handled
+  mutation errors. Transcribed from the published GraphQL reference and the errors guide.'
+envelope:
+  shape: data.<mutation>.errors[]
+  interface: MutationError
+  discriminator: __typename
+  locator: path
+  example:
+    data:
+      storyBroadcast:
+        errors:
+        - __typename: ObjectNotFoundError
+          path: input.id
+        story: null
+  docs: https://learn.elium.com/en/api/main_concepts/errors
+transport_envelope:
+  note: Non-GraphQL transport errors use a JSON envelope, observed live on the MCP service path.
+  shape:
+    error:
+      code: <string>
+      message: <string>
+  observed:
+    url: https://<platform>.elium.com/services/mcp
+    http_status: 404
+    body:
+      error:
+        code: internal-error
+        message: Not Found
+    probed: '2026-08-17'
+error_count: 30
+problems:
+- type: AnswerFeedbackError
+  description: Error Type of the answerFeedback Mutation
+- type: AnswerResolveError
+  description: Error Type of the answerFeedback Mutation
+- type: AnswerSendForReviewError
+  description: Error Type of the answerFeedback Mutation
+- type: AttributeError
+  description: Error with one of the Attribute.
+  fields:
+  - path
+  - error
+  - key
+- type: DiffError
+  description: Represents possible errors that can occur during a Diff operations between versions.
+- type: EmailAlreadyExistsError
+  description: Represent the error when trying to use an email that already exists
+  fields:
+  - path
+  - email
+- type: InUseTagMutationError
+  description: Represent the error when trying do an action on an object that is still used by other objects
+    (of used for deletion)
+  fields:
+  - path
+  - stories
+  - tagRelations
+  - savedSearches
+  - spaceTabs
+  - emailPipeline
+  - smartFeeds
+  - smartAssistants
+- type: InstanceActivateError
+  description: Error type for the InstanceActivate token verification
+- type: IntegrationError
+  description: Represent the error when an external integration service returned an error
+  fields:
+  - path
+- type: InvalidFormatError
+  description: Represent the error when a supplied format doesn't match what is expected
+  fields:
+  - path
+  - message
+- type: InvalidInputError
+  description: Represent the error when a supplied value is invalid
+  fields:
+  - path
+- type: InvalidPasswordError
+  description: Represent the error when doing the provided password is Invalid
+  fields:
+  - path
+  - message
+- type: InvalidPlanError
+  description: Represent the error when doing operations with an invalid Plan.
+  fields:
+  - path
+- type: InvalidPlanLimitsError
+  description: Represent the error when an operation violate the limits of the future plan
+  fields:
+  - path
+  - errorLimits
+- type: LimitsViolationError
+  description: Represent the error when an operation will result in violating the current limits of the
+    plan
+  fields:
+  - path
+  - limits
+- type: LockedContentError
+  description: Error when a content is currently locked for edition
+  fields:
+  - path
+- type: MissingTypeInputError
+  description: Represent the error when creating a SpaceTab without giving a proper type
+  fields:
+  - path
+- type: ObjectAlreadyExistsError
+  description: Represent the error when an object you are trying to create or edit conflict whith an existing
+    object
+  fields:
+  - path
+- type: ObjectNotFoundError
+  description: Represent the error when an object touched by a mutation was not found
+  fields:
+  - path
+- type: PermissionError
+  description: Represent the error when trying do an action but there are permission issues
+  fields:
+  - path
+- type: RootFolderRemoveError
+  description: Represent the error when trying to remove the root folder.
+  fields:
+  - path
+- type: SharePointAddSearchTabError
+  description: Error Type of the sharePointAddSearchTab Mutation
+- type: SharePointRemoveSearchTabError
+  description: Error Type of the sharePointRemoveSearchTab Mutation
+- type: SharePointSearchTabUpdateError
+  description: Error Type of the sharePointSearchTabUpdate Mutation
+- type: StoryLockError
+  description: Error when a content is currently locked for edition
+  fields:
+  - path
+- type: StoryNoModificationsError
+  description: Represent the error when a content was modified but without any modifications.
+  fields:
+  - path
+- type: SubscriptionUpdateError
+  description: Represent the error when a suscription update request was rejected
+  fields:
+  - message
+  - path
+- type: TooManyRecipientsError
+  description: Represent the error when trying to send a message to too many recipients
+  fields:
+  - path
+  - nRecipients
+- type: TranslationError
+  description: Represents possible errors that can occur during translation operations.
+- type: UnconfiguredServiceError
+  description: Represent the error when trying to use a service that is disabled or unconfigured
+  fields:
+  - path

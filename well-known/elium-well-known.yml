@@ -1,0 +1,92 @@
+generated: '2026-08-17'
+method: probed
+source: live GET probes of every Elium host found in apis.yml, the docs surface and the API host
+result: no-hit
+result_note: >-
+  Elium serves NO /.well-known/ discovery document of its own. Every path on elium.com and api.elium.com
+  returned 404. Two 200s were observed and BOTH are false positives, recorded here so a later round does
+  not credit them: learn.elium.com answers 200 with the same HTML documentation shell for every
+  /.well-known/* path (an SPA/docs catch-all, not a document), and the one real 200 - a text/plain
+  security.txt on help.elium.com - belongs to Intercom, the third party that hosts Elium's help centre
+  (its own Canonical field says https://app.intercom.com/.well-known/security.txt and its contacts are
+  bugcrowd.com/intercom and security@intercom.com). No WellKnown or SecurityTxt pointer is wired in
+  apis.yml, because neither surface is Elium's.
+hosts:
+- host: https://elium.com
+  role: website
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /.well-known/mcp.json, status: 404}
+  - {path: /llms.txt, status: 200, content_type: text/plain, file: ../llms/elium-llms.txt,
+     note: A real provider-authored llms.txt (24.7 KB) - captured verbatim and pointed at as LLMsTxt.}
+- host: https://api.elium.com
+  role: api-host (resolves, serves an application 404 page - no API is published on this host)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /openapi.json, status: 404}
+  - {path: /openapi.yaml, status: 404}
+  - {path: /swagger.json, status: 404}
+  - {path: /v1/openapi.json, status: 404}
+  - {path: /api-docs, status: 404}
+  - {path: /docs, status: 404}
+  - {path: /redoc, status: 404}
+  - {path: /llms.txt, status: 404}
+- host: https://learn.elium.com
+  role: developer documentation
+  soft_200: true
+  soft_200_note: >-
+    Every /.well-known/* path returns HTTP 200 with content_type text/html and an identical documentation
+    HTML shell. This is a catch-all, not a document. All entries below are treated as MISSES.
+  documents:
+  - {path: /.well-known/security.txt, status: 200, content_type: text/html, verdict: html-shell-miss}
+  - {path: /.well-known/openid-configuration, status: 200, content_type: text/html, verdict: html-shell-miss}
+  - {path: /.well-known/oauth-authorization-server, status: 200, content_type: text/html, verdict: html-shell-miss}
+  - {path: /.well-known/oauth-protected-resource, status: 200, content_type: text/html, verdict: html-shell-miss}
+  - {path: /.well-known/api-catalog, status: 200, content_type: text/html, verdict: html-shell-miss}
+  - {path: /.well-known/ai-plugin.json, status: 200, content_type: text/html, verdict: html-shell-miss}
+  - {path: /.well-known/agent-card.json, status: 200, content_type: text/html, verdict: html-shell-miss}
+  - {path: /.well-known/agent.json, status: 200, content_type: text/html, verdict: html-shell-miss}
+  - {path: /llms.txt, status: 200, content_type: text/html, verdict: html-shell-miss}
+- host: https://help.elium.com
+  role: help centre (hosted by Intercom)
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/plain
+    verdict: third-party-miss
+    note: >-
+      Intercom's own security.txt, served because the help centre is an Intercom-hosted property. Canonical
+      https://app.intercom.com/.well-known/security.txt; Contact bugcrowd.com/intercom and
+      security@intercom.com. Not Elium's disclosure surface - deliberately NOT saved and NOT credited.
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+a2a:
+  agent_card_found: false
+  note: >-
+    /.well-known/agent-card.json and the legacy /.well-known/agent.json were probed on all four hosts.
+    elium.com, api.elium.com and help.elium.com return 404; learn.elium.com returns an HTML shell. No
+    AgentCard exists, so per the pipeline contract no a2a/ artifact and no AgentCard pointer were written.
+oauth_discovery:
+  note: >-
+    Elium documents OAuth 2.0 authorize/token/revoke endpoints on each tenant subdomain
+    (https://{platform}.elium.com/oauth/authorize | /oauth/token | /oauth/revoke) but publishes no
+    RFC 8414 authorization-server metadata and no OIDC discovery document at any well-known path.

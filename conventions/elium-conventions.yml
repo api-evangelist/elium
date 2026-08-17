@@ -1,0 +1,99 @@
+generated: '2026-08-17'
+method: searched
+source:
+- https://learn.elium.com/en/api/getting_started/graphql
+- https://learn.elium.com/en/api/main_concepts/errors
+- https://learn.elium.com/reference/
+note: >-
+  Cross-cutting runtime semantics for the Elium GraphQL API. Read from the provider's own API guides and
+  the published GraphQL reference; there is no OpenAPI to derive from.
+protocol:
+  style: GraphQL
+  endpoint: https://{platform}.elium.com/graphql
+  transport: HTTPS POST (single endpoint); subscriptions over the same endpoint
+  content_type: application/json
+  tenancy: >-
+    One tenant per subdomain. There is no shared vendor host - a client must be configured with the
+    customer's own platform hostname before it can call anything.
+authentication:
+  style: OAuth 2.0 bearer
+  header: 'Authorization: Bearer <access_token>'
+  scope: apiv1
+  detail: authentication/elium-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  evidence: >-
+    No idempotency key, request-key, or de-duplication mechanism appears anywhere in the 206 published
+    mutations, the 244 input types, or the API guides. Searched the published GraphQL reference for
+    /idempoten/i - zero matches. Retrying a mutation such as storyPost creates another story. No
+    Idempotency pointer is wired in apis.yml, because Elium has no idempotency contract to point at.
+  agent_impact: >-
+    An agent that times out mid-write has no safe retry: it must query for the effect of the previous
+    attempt before retrying.
+pagination:
+  style: relay-cursor
+  spec: GraphQL Cursor Connections
+  arguments: [first, after, last, before]
+  response_fields: [edges, edges.node, edges.cursor, pageInfo, pageInfo.hasNextPage, pageInfo.hasPreviousPage,
+    pageInfo.startCursor, pageInfo.endCursor, totalCount]
+  connection_type_count: 60
+  evidence: >-
+    The published reference defines 60 *Connection types with matching *Edge types and a shared PageInfo
+    type; list fields such as Story.comments and Story.annotations take before/after/first/last cursor
+    arguments.
+field_selection:
+  style: graphql-native
+  detail: >-
+    Field selection is the query language itself - there is no sparse-fieldset or expand parameter to
+    document. Interface types (11) and unions are resolved with inline fragments and __typename.
+  polymorphism: >-
+    The node(id) and nodes(ids) queries resolve any object through the global Node interface, so an agent
+    can rehydrate an opaque GraphQL ID without knowing its concrete type.
+identifiers:
+  primary: slug
+  slug_type: Int
+  slug_note: >-
+    Elium's user-facing identifier is an integer it calls a "slug" - story(slug: Int!), space(slug: Int!),
+    user(slug: Int!). This is unusual and worth flagging: "slug" normally means a string.
+  global_id: >-
+    A separate opaque GraphQL ID exists on Node-implementing types and is what node(id)/nodes(ids) accept.
+  version_ids: Story exposes editVersionUUID alongside its integer slug.
+metadata:
+  style: templates
+  detail: >-
+    Custom fields are modelled as StorySchema definitions with SchemaAttribute entries, not as a free-form
+    metadata map. Schemas are managed through storySchemaCreate/storySchemaUpdate/schemaAttributeCreate.
+errors:
+  envelope: in-band mutation errors[]
+  detail: >-
+    Every mutation payload carries errors[] whose members implement the MutationError interface; each
+    member exposes __typename and path. HTTP status remains 200 for handled mutation errors, so a client
+    MUST inspect the payload rather than the status line.
+  rfc9457: false
+  catalog: errors/elium-error-codes.yml
+  docs: https://learn.elium.com/en/api/main_concepts/errors
+versioning:
+  scheme: none-published
+  detail: >-
+    No URI version, no version header, no date-pinned version. The only version marker Elium publishes is
+    the OAuth scope name, apiv1. Schema evolution is signalled per field: five operations carry a
+    Deprecated marker in the reference (see lifecycle/elium-lifecycle.yml).
+  lifecycle: lifecycle/elium-lifecycle.yml
+rate_limiting:
+  documented: false
+  headers: []
+  detail: >-
+    No published limits and no documented response headers. See rate-limits/elium-rate-limits.yml.
+request_tracing:
+  documented: false
+  detail: No request-id or correlation-id header is documented for API consumers.
+events:
+  style: graphql-subscriptions
+  webhooks: false
+  detail: 18 subscriptions on the same endpoint; no outbound webhooks. See asyncapi/elium-events.yml.
+access_tier:
+  detail: >-
+    The API is gated commercially, not technically: Elium's pricing page lists full API access on the
+    Enterprise plan only, and its help centre says the GraphQL API is "available for all the Enterprise
+    platform". Team and Corporate customers cannot call it. See plans/elium-plans-pricing.yml.

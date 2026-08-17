@@ -1,0 +1,84 @@
+generated: '2026-08-17'
+method: searched
+source:
+- https://registry.npmjs.org/-/v1/search?text=elium
+- https://learn.elium.com/en/api/
+sdk_count: 0
+sdk_note: >-
+  Elium publishes NO client library for its API in any language. Searched npm, PyPI, RubyGems, Packagist,
+  crates.io and the developer docs; the docs teach the GraphQL API with raw curl and query documents only.
+  Because no official SDK exists, no `SDKs` pointer is wired in apis.yml - only `Packages`, which records
+  what was actually found.
+registries_probed:
+- {registry: npm, query: elium, result: no client SDK; four first-party internal build packages under the
+    '@eliumhq' scope (below)}
+- {registry: pypi, packages_checked: [elium, elium-api, eliumhq], status: 404, result: absent}
+- {registry: rubygems, packages_checked: [elium], status: 404, result: absent}
+- {registry: packagist, query: elium, result: absent (no Elium-authored package)}
+- {registry: crates.io, query: elium, result: absent}
+- {registry: pkg.go.dev, query: elium, result: absent}
+- {registry: maven-central, query: elium, result: absent}
+- {registry: nuget, query: elium, result: absent}
+package_count: 4
+packages:
+- language: javascript
+  registry: npm
+  name: '@eliumhq/eslint-config-elium'
+  url: https://www.npmjs.com/package/@eliumhq/eslint-config-elium
+  install: npm install @eliumhq/eslint-config-elium
+  official: true
+  kind: internal-tooling
+  sdk: false
+  version: 7.0.0
+  published: '2020-01-15'
+  repository: https://gitlab.com/elium/product/eslint-config-elium
+  note: Elium's own JavaScript lint config. Not an API client. Last release 2020-01-15.
+- language: javascript
+  registry: npm
+  name: '@eliumhq/babel-preset-elium'
+  url: https://www.npmjs.com/package/@eliumhq/babel-preset-elium
+  install: npm install @eliumhq/babel-preset-elium
+  official: true
+  kind: internal-tooling
+  sdk: false
+  version: 0.7.2
+  published: '2020-01-15'
+  repository: https://gitlab.com/elium/product/babel-preset-elium
+  note: Babel preset used by Elium's own front end. Not an API client. Last release 2020-01-15.
+- language: javascript
+  registry: npm
+  name: '@eliumhq/elium-i18n'
+  url: https://www.npmjs.com/package/@eliumhq/elium-i18n
+  install: npm install @eliumhq/elium-i18n
+  official: true
+  kind: internal-tooling
+  sdk: false
+  version: 2.3.1
+  published: '2019-12-30'
+  repository: https://gitlab.com/elium/product/elium-i18n
+  note: Translation-template tooling for Elium's own product. Not an API client.
+- language: javascript
+  registry: npm
+  name: '@eliumhq/elium-mixpanel'
+  url: https://www.npmjs.com/package/@eliumhq/elium-mixpanel
+  install: npm install @eliumhq/elium-mixpanel
+  official: true
+  kind: internal-tooling
+  sdk: false
+  version: 2.8.0
+  published: '2018-12-10'
+  repository: https://gitlab.com/elium/product/elium-mixpanel
+  note: Mixpanel wiring for Elium's own product. Not an API client. Last release 2018-12-10.
+currency_finding: >-
+  Every first-party package Elium has ever published to a public registry is internal build tooling, and
+  the newest of the four was last released on 2020-01-15 - more than six years before this profile was
+  written. None of them wraps the API. The MCP server Elium shipped in June 2026 is a remote endpoint with
+  no companion package, so there is nothing on any registry that a developer or agent installs to reach
+  Elium.
+attribution_warning: >-
+  The npm scope '@elium' (packages @elium/mighty, @elium/mighty-js, @elium/mighty-http-adapter and
+  siblings, and the github.com/elium and github.com/Elium accounts) belongs to Molecule Science
+  (molecule-science.com, Montpellier, France) - a different company that happens to use the name. Those
+  packages are a TypeScript ORM and are NOT Elium's; they are deliberately excluded here. Elium's own code
+  lives on GitLab (gitlab.com/elium/product, which returns 403 to anonymous requests), which is also why no
+  GitHubOrganization pointer is wired in apis.yml.

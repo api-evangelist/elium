@@ -1,0 +1,49 @@
+generated: '2026-08-17'
+method: searched
+source:
+- https://learn.elium.com/en/api/
+- https://learn.elium.com/en/api/getting_started/quick_start
+- https://learn.elium.com/en/api/getting_started/graphql
+- https://learn.elium.com/reference/
+- https://help.elium.com/en/articles/5753009-api-documentation
+limit_count: 0
+finding: >-
+  Elium publishes NO rate limits for its GraphQL API or its MCP server. Every page of the developer
+  documentation was read - the API landing page, quick start, GraphQL guide, main concepts (story, space,
+  user, errors), all eleven how-to guides, the full SpectaQL reference and the help-centre API article -
+  and none states a request ceiling, a window, a burst allowance, a concurrency cap, or a query-cost/depth
+  budget. This is an honest zero, not an unchecked field.
+headers:
+  documented: false
+  observed: false
+  detail: >-
+    No X-RateLimit-*, RateLimit-* (RFC 9239-style) or Retry-After header is documented, and none could be
+    observed: the GraphQL endpoint is per-tenant and gated behind OAuth on an Enterprise contract, so there
+    is no unauthenticated response to read headers from. An agent has no runtime backpressure signal to
+    read and must treat throttling as unobservable.
+exhaustion_status: null
+exhaustion_note: >-
+  No documented status code for exhaustion. Because Elium returns handled errors in-band as GraphQL
+  mutation errors[] with HTTP 200, a client cannot assume a 429 would be used - see
+  errors/elium-error-codes.yml.
+query_cost_limits:
+  documented: false
+  note: >-
+    No query depth limit, complexity/cost budget, or node-count ceiling is published - a notable gap for a
+    GraphQL API whose Story type alone exposes 54 fields, many of them cursor connections onto further
+    types.
+related_limits_found:
+- limit: LimitsViolationError
+  kind: plan-limit (not a rate limit)
+  source: https://learn.elium.com/reference/#definition-LimitsViolationError
+  note: >-
+    The schema defines LimitsViolationError, InvalidPlanError and InvalidPlanLimitsError, so the platform
+    does enforce contractual plan limits and surfaces them as mutation errors. What those limits are is not
+    published.
+- limit: TooManyRecipientsError
+  kind: operation-limit
+  source: https://learn.elium.com/reference/#definition-TooManyRecipientsError
+  note: A recipient ceiling exists on broadcast/share operations; the number is not published.
+- limit: minimum 10 users
+  kind: commercial
+  source: https://elium.com/pricing

@@ -1,0 +1,80 @@
+generated: '2026-08-17'
+method: searched
+status: published
+source: https://help.elium.com/en/articles/12767574-mcp
+docs:
+- https://help.elium.com/en/articles/12767574-mcp
+- https://elium.com/product/connect-your-ai
+- https://elium.com/changelog
+announced: '2026-06-03'
+announcement: >-
+  "Connect your knowledge to any AI assistant - Let ChatGPT, Claude, and other AI assistants securely
+  query your Elium knowledge base through the Model Context Protocol." (elium.com/changelog, 3 June 2026)
+deployment:
+  mode: remote
+  endpoint: https://{platform}.elium.com/services/mcp
+  auth: oauth
+  verified: searched
+  templated: true
+  templated_reason: >-
+    Elium is deployed one tenant per subdomain and the provider's own documentation states that "each
+    Elium instance exposes its own secure MCP connection". The endpoint is therefore genuinely
+    per-customer - the host is the customer's own platform subdomain, not a single vendor-hosted URL.
+    There is no shared vendor endpoint to record and none was invented.
+  probe:
+    note: >-
+      No public/demo tenant exists, so tools/list could not be called anonymously. Probing the path on
+      non-existent tenants returned the application's JSON error envelope, which confirms the route is
+      served by the Elium application rather than a wildcard SPA catch-all.
+    evidence:
+    - url: https://demo.elium.com/services/mcp
+      method: POST
+      body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+      http_status: 404
+      response: '{"error":{"code":"internal-error","message":"Not Found"}}'
+      probed: '2026-08-17'
+server:
+  name: elium
+  transport: http
+  url: https://{platform}.elium.com/services/mcp
+  scope: read-only
+authentication:
+  protocol: OAuth 2.0
+  client_registration:
+  - manual: >-
+      Create a Connected App in the Elium administration panel (Security tab) and use its Client ID and
+      Client Secret. This is the provider's recommended path for administrators.
+  - dynamic: Dynamic Client Registration (DCR) is available on request.
+  scope: apiv1
+  permission_model: >-
+    "Every tool runs with the permissions of the authenticated user, so an assistant can only ever access
+    content that user is already allowed to see in Elium." Tool calls are permission-aware, not
+    service-account-wide.
+  known_clients:
+  - client: ChatGPT
+    redirect_url: https://chatgpt.com/connector_platform_oauth_redirect
+    note: Requires Developer Mode in ChatGPT Connectors, then a custom connector with OAuth auth.
+  - client: Claude
+    redirect_url: https://claude.ai/api/mcp/auth_callback
+    note: Configured with the Client ID and Client Secret of the Elium Connected App.
+tool_count: 3
+tools:
+- name: FindRelevantArticles
+  description: >-
+    Performs a semantic (meaning-based) search of the knowledge base from a natural-language question.
+  access: read
+- name: FindSpecificArticles
+  description: >-
+    Finds articles with explicit filters - keyword, template, date range - and a custom sort order.
+  access: read
+- name: ReadFullArticle
+  description: Retrieves the complete content of an article together with its key attributes.
+  access: read
+notes:
+- All three published tools are read-only; Elium exposes no write tools over MCP even though its GraphQL
+  API has 206 mutations.
+- Tool inputSchemas are not published and could not be captured - tools/list requires an authenticated
+  session on a customer tenant. Names and descriptions above are verbatim from the provider's help
+  article; nothing was inferred.
+- No /.well-known/mcp.json, /.well-known/oauth-authorization-server or /.well-known/oauth-protected-resource
+  document is served on elium.com (all 404 - see well-known/elium-well-known.yml).

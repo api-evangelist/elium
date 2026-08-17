@@ -1,0 +1,30 @@
+generated: '2026-08-17'
+method: searched
+source: https://learn.elium.com/en/api/getting_started/authentication
+docs: https://learn.elium.com/en/api/getting_started/authentication
+note: >-
+  Derived nothing from OpenAPI - Elium publishes none. Read from the provider's authentication guide and
+  quick-start, both of which name exactly one scope. There is no scopes/permissions reference page beyond
+  this, and no per-resource or read/write split: apiv1 is the whole API surface.
+schemes:
+- name: OAuth2
+  source: https://learn.elium.com/en/api/getting_started/authentication
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://{platform}.elium.com/oauth/authorize
+    tokenUrl: https://{platform}.elium.com/oauth/token
+  - flow: password
+    tokenUrl: https://{platform}.elium.com/oauth/token
+scope_count: 1
+scopes:
+- scope: apiv1
+  description: >-
+    The single scope covering the entire Elium API. Granted on behalf of one Elium user; the effective
+    permissions are that user's own content permissions, not the scope's.
+  flows: [authorizationCode, password]
+  sources: [https://learn.elium.com/en/api/getting_started/authentication]
+gaps:
+- One coarse scope for 17 queries, 206 mutations and 18 subscriptions - an agent cannot be granted
+  read-only API access at the OAuth layer. Read-only agent access is instead offered as a separate
+  product surface (the MCP server, whose three published tools are all read-only).
+- No incremental or step-up authorization, and no scope documentation page distinct from the auth guide.

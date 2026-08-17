@@ -1,0 +1,19 @@
+generated: '2026-08-17'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.elium.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 12 10:17:22 2026 GMT
+  hsts: true
+  hsts_max_age: 86400
+domains:
+- domain: elium.com
+  dnssec: true
+  caa:
+  - 0 issue "pki.goog"
+  - 0 issue "letsencrypt.org"
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

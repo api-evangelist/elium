@@ -1,0 +1,108 @@
+generated: '2026-08-17'
+method: searched
+source:
+- https://elium.com/trust
+- https://elium.com/trust/controls
+- https://learn.elium.com/en/api/getting_started/authentication
+- https://learn.elium.com/reference/
+- https://help.elium.com/en/articles/12767574-mcp
+note: >-
+  Cross-cutting standards posture. Compliance certifications are read from Elium's published trust centre;
+  technical conformance is read from the published GraphQL reference and API guides. Absence is recorded as
+  conforms:false with the reason, not omitted.
+standards:
+- id: graphql
+  conforms: true
+  evidence: >-
+    Single GraphQL endpoint per tenant with a fully published reference - 17 queries, 206 mutations,
+    18 subscriptions, 1128 type definitions (learn.elium.com/reference/).
+- id: graphql-cursor-connections
+  conforms: true
+  evidence: 60 *Connection/*Edge type pairs with a shared PageInfo and before/after/first/last arguments.
+- id: graphql-global-object-identification
+  conforms: true
+  evidence: A Node interface with node(id) and nodes(ids) root queries.
+- id: oauth2
+  conforms: true
+  evidence: >-
+    OAuth 2.0 authorization-code, password and refresh-token grants documented, with
+    /oauth/authorize, /oauth/token and /oauth/revoke on each tenant host and a single apiv1 scope.
+- id: rfc7009-token-revocation
+  conforms: true
+  evidence: POST /oauth/revoke with token, client_id and client_secret revokes access and refresh tokens.
+- id: rfc8414-authorization-server-metadata
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server returns 404 on every Elium host.
+- id: oidc
+  conforms: partial
+  evidence: >-
+    OpenID Connect is offered as an inbound enterprise-SSO connector for platform login
+    (elium.com/trust/controls), but the API itself is plain OAuth 2.0 and no OIDC discovery document is
+    served, so the API is not an OIDC relying party or provider.
+- id: saml2
+  conforms: true
+  evidence: >-
+    "SAML2 and OpenID connectors are available for seamless enterprise SSO integration, including
+    ADFS/Microsoft." (elium.com/trust/controls)
+- id: mcp
+  conforms: true
+  evidence: >-
+    A remote Model Context Protocol server per tenant at /services/mcp with OAuth 2.0 authorization,
+    three published read-only tools, and optional Dynamic Client Registration.
+- id: a2a
+  conforms: false
+  evidence: No agent card at /.well-known/agent-card.json or /.well-known/agent.json on any host (404s).
+- id: llmstxt
+  conforms: true
+  evidence: A 24.7 KB provider-authored /llms.txt served at https://elium.com/llms.txt (200, text/plain).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors are GraphQL in-band mutation errors[] keyed on __typename; no application/problem+json is used.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: >-
+    No security.txt on elium.com or api.elium.com. The one served on help.elium.com is Intercom's, not
+    Elium's (Canonical app.intercom.com).
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No deprecation or sunset policy is published; deprecation is signalled only in schema docs.
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI is published. Probed the API host root, the docs host and every candidate spec path -
+    all 404 (see well-known/elium-well-known.yml). GraphQL is the contract for this provider.
+- id: asyncapi
+  conforms: false
+  evidence: No AsyncAPI document; the event surface is 18 GraphQL subscriptions.
+- id: idempotency
+  conforms: false
+  evidence: No idempotency key mechanism anywhere in the published mutation or input surface.
+compliance:
+  published: true
+  url: https://elium.com/trust
+  certifications:
+  - ISO/IEC 27001:2022
+  - SecNumCloud
+  - GDPR
+  - EU AI Act
+  - EcoVadis Silver
+  attestations_on_request:
+  - ISO 27001 certificate
+  - Statement of Applicability (ISO 27002:2022)
+  - Penetration test report (2025)
+  - Penetration test report (2024)
+  - Cyber insurance certificate (2026)
+  - Data Processing Agreement
+  - List of third-party providers
+  - Elium AI - technical details
+  not_claimed: [SOC 2, HIPAA, PCI DSS, FedRAMP, HDS]
+  data_residency:
+    default: European Union (Google Cloud Platform, Belgium region, redundancy across European data centres)
+    sovereign: 3DS Outscale sovereign French cloud (SecNumCloud-qualified)
+    on_premise: supported
+    policy: Hosting region is set per tenant and never mixed.
+  ai_data_policy: >-
+    "Customer content is never used to train or fine-tune models - ours or our providers'. Generative-AI
+    calls run with zero data retention contractually enforced with every LLM provider."
+  detail: security/elium-trust-center.yml

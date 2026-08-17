@@ -1,0 +1,71 @@
+generated: '2026-08-17'
+method: derived
+source: https://learn.elium.com/reference/
+spec_type: none
+asyncapi_published: false
+webhooks_advertised: false
+note: Elium publishes NO AsyncAPI document and advertises NO outbound webhooks. Its event surface is 18
+  GraphQL subscriptions on the same per-tenant /graphql endpoint, transcribed below from the provider's
+  published GraphQL reference. Because these are client-initiated GraphQL subscriptions rather than provider-delivered
+  webhooks, no Webhooks or AsyncAPI pointer is wired in apis.yml - recording the surface without over-claiming
+  it.
+transport: GraphQL subscriptions over the per-tenant /graphql endpoint
+endpoint: https://{platform}.elium.com/graphql
+authentication: OAuth 2.0 bearer (scope apiv1)
+channels:
+- subscription: annotationAdded
+  payload: AnnotationAddedPayload
+  description: Subscription about Annotation beeing added on the a given Story
+- subscription: annotationCommentAdded
+  payload: AnnotationCommentAddedPayload
+  description: Subscription about AnnotationComment beeing added to the given Annotation
+- subscription: annotationCommentDeleted
+  payload: AnnotationCommentDeletedPayload
+  description: Subscription about AnnotationComment beeing deleted on a given Annotation
+- subscription: annotationCommentEdited
+  payload: AnnotationCommentEditedPayload
+  description: Subscription about AnnotationComment beeing edited (~comment) on a given Annotation
+- subscription: annotationEdited
+  payload: AnnotationEditedPayload
+  description: Subscription about Annotation beeing edited (change status, comment changed, ...) on the
+    a given Story
+- subscription: commentAdded
+  payload: CommentAddedPayload
+  description: Subscription about Comment beeing added on a given Story
+- subscription: commentDeleted
+  payload: CommentDeletedPayload
+  description: Subscribe to deletion of a comment
+- subscription: commentEdited
+  payload: CommentEditedPayload
+  description: Subscribe to modifications done to a given comment's body or attachments
+- subscription: contentLiked
+  payload: ContentLikedPayload
+  description: Subscribe when a single content is Liked or Unliked
+- subscription: notificationAdded
+  payload: NotificationAddedPayload
+  description: Subscribe to Newly added notifications of the current user
+- subscription: notificationCount
+  payload: NotificationCountPayload
+  description: Subscribe to the changed of count of unread notifications of the current user
+- subscription: notificationUpdated
+  payload: NotificationUpdatedPayload
+  description: Subscribe to update of the user's single notification (reading status, ...)
+- subscription: onboardingStepCompleted
+  payload: OnboardingStepCompletedPayload
+  description: Subscription to Instance to get an updated onboardingCompletedSteps and onboardingCompleted
+- subscription: storyAlertAdded
+  payload: StoryAlertAddedPayload
+  description: Subscription to new enabled user side StoryAlerts.
+- subscription: storyAlertUpdated
+  payload: StoryAlertUpdatedPayload
+  description: Subscription to archived or marked as read StoryAlerts.
+- subscription: storyLocked
+  payload: StoryLockedPayload
+  description: Subscribe to Locking and unlocking of a Story This is usually used to avoid multiple users
+    editing the same content at the same time
+- subscription: storyUpdated
+  payload: StoryUpdatedPayload
+  description: Subscription to Story edition. When a story recieve a new version.
+- subscription: userPresenceUpdated
+  payload: UserPresenceUpdatedPayload
+  description: Subscribe to presence of a user on a given product (mobile, web, ...)

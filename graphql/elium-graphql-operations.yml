@@ -1,0 +1,1535 @@
+generated: '2026-08-17'
+method: derived
+source: https://learn.elium.com/reference/
+note: 'Derived from Elium''s own published GraphQL reference (SpectaQL-generated, learn.elium.com/reference/).
+  The machine-readable SDL could not be captured: the GraphQL endpoint is per-tenant (https://<platform>.elium.com/graphql)
+  and introspection requires an OAuth 2.0 access token from a connected app on that tenant, so no anonymous
+  introspection is possible. Every operation, argument, return type and description below is transcribed
+  from the provider''s published reference - none is invented.'
+endpoint:
+  url_template: https://{platform}.elium.com/graphql
+  templated: true
+  reason: Elium is deployed one tenant per subdomain; each customer platform serves its own GraphQL endpoint.
+  introspection: auth-gated (OAuth 2.0 bearer, scope apiv1)
+documentation:
+  reference: https://learn.elium.com/reference/
+  guides: https://learn.elium.com/en/api/
+  quick_start: https://learn.elium.com/en/api/getting_started/quick_start
+counts:
+  queries: 17
+  mutations: 206
+  subscriptions: 18
+  type_definitions: 1128
+  objects: 559
+  inputs: 244
+  enums: 94
+  interfaces: 11
+  scalars: 20
+queries:
+- name: instance
+  returns: Instance
+  description: Get information about the global Instance configuration and settings
+- name: instanceActivationToken
+  returns: InstanceActivationToken
+  description: Get informations about InstanceActivation using a Token. Used only when creating a free
+    trial
+  arguments:
+  - name: token
+    type: UUID!
+- name: instanceAuth
+  returns: InstanceAuthentication
+  description: Information for the different Authentication methods and related login screen
+- name: integrations
+  returns: Integrations
+  description: Get all integrations of the instance
+- name: me
+  returns: Me
+  description: The currently authenticated user.
+- name: node
+  returns: Node
+  description: Get any node object via the Graphql unique ID
+  arguments:
+  - name: id
+    type: ID
+- name: nodes
+  returns: '[Node]'
+  description: Get a list of node objects via their ids. see node resolver
+  arguments:
+  - name: ids
+    type: '[ID!]!'
+- name: organization
+  returns: Organization
+  description: Get an organization via the the subdomain For SSO configuration, for example
+  arguments:
+  - name: subdomain
+    type: String!
+- name: publicInstance
+  returns: PublicInstance
+  description: Publicly available Instance informations you must provide a valid access token to access
+    it
+  arguments:
+  - name: token
+    type: String!
+- name: publicStory
+  returns: PublicStory
+  description: Fetch a publicly shared content by token and lang
+  arguments:
+  - name: token
+    type: String!
+  - name: lang
+    type: Lang
+- name: space
+  returns: Space
+  description: Get a space via the the slug (integer id)
+  arguments:
+  - name: slug
+    type: Int!
+- name: spaceGroup
+  returns: SpaceGroup
+  description: Get a space group via the slug (integer id)
+  arguments:
+  - name: slug
+    type: ID!
+- name: statusStory
+  returns: Story
+  description: Get a story or a status(kp3) via the slug Deprecated
+  arguments:
+  - name: slug
+    type: Int!
+- name: story
+  returns: Story
+  description: Get a story via its slug (integer id)
+  arguments:
+  - name: slug
+    type: Int!
+- name: storyReshares
+  returns: '[Story!]!'
+  description: Get a list of stories that are reshares of the current story. This may allow viewing an
+    alternative reshare if you don't have access.
+  arguments:
+  - name: slug
+    type: Int!
+- name: storySchema
+  returns: StorySchema
+  description: Get a story schema via the slug
+  arguments:
+  - name: slug
+    type: Int!
+- name: user
+  returns: User
+  description: Get a user via the slug (integer id)
+  arguments:
+  - name: slug
+    type: Int!
+mutations:
+- name: alertCreate
+  returns: AlertCreatePayload
+  description: Create an Alert based on search criterias
+  arguments:
+  - name: input
+    type: AlertCreateInput!
+- name: alertDelete
+  returns: AlertDeletePayload
+  description: Delete an Alert
+  arguments:
+  - name: input
+    type: AlertDeleteInput!
+- name: alertEdit
+  returns: AlertEditPayload
+  description: Edit an existing Alert
+  arguments:
+  - name: input
+    type: AlertEditInput!
+- name: alertSubscriberAdd
+  returns: AlertSubscriberAddPayload
+  description: Add subscribers to an Alert
+  arguments:
+  - name: input
+    type: AlertSubscriberAddInput!
+- name: alertSubscriberRemove
+  returns: AlertSubscriberRemovePayload
+  description: Remove subscribers of an Alert
+  arguments:
+  - name: input
+    type: AlertSubscriberRemoveInput!
+- name: alertSubscription
+  returns: AlertSubscriptionPayload
+  description: Edit subscription (sending preferences) of an Alert
+  arguments:
+  - name: input
+    type: AlertSubscriptionInput!
+- name: analyticsSignal
+  returns: AnalyticsSignalPayload
+  description: Send signal about read or impression made by a user
+  arguments:
+  - name: input
+    type: AnalyticsSignalInput!
+- name: annotationCommentAdd
+  returns: AnnotationCommentAddPayload
+  description: Add a reply (AnnotationComment) to an Annotation requires AnnotationActions.reply
+  arguments:
+  - name: input
+    type: AnnotationCommentAddInput!
+- name: annotationCommentDelete
+  returns: AnnotationCommentDeletePayload
+  description: Delete an AnnotationComment requires AnnotationCommentActions.delete
+  arguments:
+  - name: input
+    type: AnnotationCommentDeleteInput!
+- name: annotationCommentEdit
+  returns: AnnotationCommentEditPayload
+  description: Edit an AnnotationComment text content requires AnnotationCommentActions.edit
+  arguments:
+  - name: input
+    type: AnnotationCommentEditInput!
+- name: annotationCreate
+  returns: AnnotationCreatePayload
+  description: Create an Annotation on a given Story requires StoryActions.annotate
+  arguments:
+  - name: input
+    type: AnnotationCreateInput!
+- name: annotationDelete
+  returns: AnnotationDeletePayload
+  description: Delete an Annotation requires AnnotationActions.delete
+  arguments:
+  - name: input
+    type: AnnotationDeleteInput!
+- name: annotationEdit
+  returns: AnnotationEditPayload
+  description: Edit an exisiting Annotation on a story (resolve it or change the message for example)
+    requires AnnotationActions.edit or requires AnnotationActions.resolve
+  arguments:
+  - name: input
+    type: AnnotationEditInput!
+- name: answerFeedback
+  returns: AnswerFeedbackPayload
+  description: Give Feedback about an answer provided by me.answers
+  arguments:
+  - name: input
+    type: AnswerFeedbackInput!
+- name: answerResolve
+  returns: AnswerResolvePayload
+  description: Mark an Answer as resolved and provide a message to the user
+  arguments:
+  - name: input
+    type: AnswerResolveInput!
+- name: answerSendForReview
+  returns: AnswerSendForReviewPayload
+  description: Send a Question and answers to Elium's team for review and improvement
+  arguments:
+  - name: input
+    type: AnswerSendForReviewInput!
+- name: appLauncherCreate
+  returns: AppLauncherCreatePayload
+  description: Create a new AppLauncher object to be display for everybody or only list of team's users
+    require InstanceActions.appLauncherEdit
+  arguments:
+  - name: input
+    type: AppLauncherCreateInput!
+- name: appLauncherDelete
+  returns: AppLauncherDeletePayload
+  description: Delete a single AppLauncher object. require InstanceActions.appLauncherEdit
+  arguments:
+  - name: input
+    type: AppLauncherDeleteInput!
+- name: appLauncherEdit
+  returns: AppLauncherEditPayload
+  description: Edit an AppLauncher object. require InstanceActions.appLauncherEdit
+  arguments:
+  - name: input
+    type: AppLauncherEditInput!
+- name: appLauncherOrder
+  returns: AppLauncherOrderPayload
+  description: Change the order in which the AppLauncher should be displayed to users. require InstanceActions.appLauncherOrder
+  arguments:
+  - name: input
+    type: AppLauncherOrderInput!
+- name: assetPreview
+  returns: AssetPreviewPayload
+  description: Get a preview of a given asset. Currently only CloudFile and CloudFolder are supported
+  arguments:
+  - name: input
+    type: StoryAssetInput!
+- name: bulkStoryArchive
+  returns: BulkStoryArchivePayload
+  description: Archive or Unarchive multiple stories. requires StoryActions.archive or StoryActions.restore
+    on each of the stories
+  arguments:
+  - name: input
+    type: BulkStoryArchiveInput!
+- name: bulkStoryDelete
+  returns: BulkStoryDeletePayload
+  description: Delete Stories in bulk
+  arguments:
+  - name: input
+    type: BulkStoryDeleteInput!
+- name: bulkStoryMove
+  returns: BulkStoryMovePayload
+  description: Move Stories in bulk
+  arguments:
+  - name: input
+    type: BulkStoryMoveInput!
+- name: bulkStorySchemaConvert
+  returns: BulkStorySchemaConvertPayload
+  description: 'Convert Multiple Stories to a Story with a given StorySchema Note: this only works for
+    stories that are not already converted requires StoryActions.edit on each of the stories'
+  arguments:
+  - name: input
+    type: BulkStorySchemaConvertInput!
+- name: checkPassword
+  returns: CheckPasswordPayload
+  description: Verify if the password is correct with a registration token
+  arguments:
+  - name: input
+    type: CheckPasswordInput!
+- name: commentDelete
+  returns: CommentDeletePayload
+  description: Delete a comment. requires CommentActions.delete
+  arguments:
+  - name: input
+    type: CommentDeleteInput!
+- name: commentEdit
+  returns: CommentEditPayload
+  description: Edit a comment. requires CommentActions.edit
+  arguments:
+  - name: input
+    type: CommentEditInput!
+- name: commentLike
+  returns: CommentLikePayload
+  description: Like or unlike a specific comment
+  arguments:
+  - name: input
+    type: CommentLikeInput!
+- name: commentPost
+  returns: CommentPostPayload
+  description: Post a comment on a content Comment might be posted from different sources CommentSource
+    and can contain assets
+  arguments:
+  - name: input
+    type: CommentPostInput!
+- name: connectedAppCreate
+  returns: ConnectedAppCreatePayload
+  description: Create a new ConnectedApp
+  arguments:
+  - name: input
+    type: ConnectedAppCreateInput!
+- name: connectedAppDelete
+  returns: ConnectedAppDeletePayload
+  description: Delete a single ConnectedApp object.
+  arguments:
+  - name: input
+    type: ConnectedAppDeleteInput!
+- name: connectedAppEdit
+  returns: ConnectedAppEditPayload
+  description: Edit an ConnectedApp object.
+  arguments:
+  - name: input
+    type: ConnectedAppEditInput!
+- name: contentLike
+  returns: ContentLikePayload
+  description: Toggle Like status of a Story
+  arguments:
+  - name: input
+    type: ContentLikeInput!
+- name: disableStandardContent
+  returns: DisableStandardContentPayload
+  description: Set the disabled standard content items within ['story file link event'] Standard content
+    are hardcoded "fake schemas" in the front-end
+  arguments:
+  - name: input
+    type: DisableStandardContentInput!
+- name: emailPipelineCreate
+  returns: EmailPipelineCreatePayload
+  description: Create a new EmailPipeline object to ingest content in the platform require InstanceActions.emailPipelineEdit
+  arguments:
+  - name: input
+    type: EmailPipelineCreateInput!
+- name: emailPipelineDelete
+  returns: EmailPipelineDeletePayload
+  description: Delete a single EmailPipeline object. require InstanceActions.emailPipelineEdit
+  arguments:
+  - name: input
+    type: EmailPipelineDeleteInput!
+- name: emailPipelineEdit
+  returns: EmailPipelineEditPayload
+  description: Edit an EmailPipeline object. require InstanceActions.emailPipelineEdit
+  arguments:
+  - name: input
+    type: EmailPipelineEditInput!
+- name: eventInvite
+  returns: EventInvitePayload
+  description: Invite user to an Story with event defined requires StoryActions.edit
+  arguments:
+  - name: input
+    type: EventInviteInput!
+- name: eventRespond
+  returns: EventRespondPayload
+  description: Respond to an event Invitation (RSVP)
+  arguments:
+  - name: input
+    type: EventRespondInput!
+- name: facetCreate
+  returns: FacetCreatePayload
+  description: Create a facet (or category of tags)
+  arguments:
+  - name: input
+    type: FacetCreateInput!
+- name: folderAddTag
+  returns: FolderAddTagPayload
+  description: Add a tag on all the items in a Folder
+  arguments:
+  - name: input
+    type: FolderAddTagInput!
+- name: folderDelete
+  returns: FolderDeletePayload
+  description: Delete a given Folder
+  arguments:
+  - name: input
+    type: FolderDeleteInput!
+- name: folderMove
+  returns: FolderMovePayload
+  description: Move the contents of a folder to another space or attribute the contents to another owner
+  arguments:
+  - name: input
+    type: FolderMoveInput!
+- name: hashtagCreate
+  returns: HashtagCreatePayload
+  description: Create a Hashtag (~ tag not linked to a category)
+  arguments:
+  - name: input
+    type: HashtagCreateInput!
+- name: instanceActivate
+  returns: InstanceActivatePayload
+  description: Activates an instance after the provisioning is done.
+  arguments:
+  - name: input
+    type: InstanceActivateInput!
+- name: instanceCancelSubscription
+  returns: InstanceCancelSubscriptionPayload
+  description: Cancels the subscription for an instance of the application. This mutation requires an
+    InstanceCancelSubscriptionInput object that specifies the details needed to cancel the subscription.
+  arguments:
+  - name: input
+    type: InstanceCancelSubscriptionInput!
+- name: instanceCompleteOnboadingStep
+  returns: InstanceCompleteOnboadingStepPayload
+  description: Mark a step as completed (or skipped)
+  arguments:
+  - name: input
+    type: InstanceCompleteOnboadingStepInput!
+- name: instanceContactsUpdate
+  returns: InstanceContactsUpdatePayload
+  description: Set A contact for the instance
+  arguments:
+  - name: input
+    type: InstanceContactsUpdateInput!
+- name: instanceDelete
+  returns: InstanceDeletePayload
+  description: Delete the whole instance and every data with it
+  arguments:
+  - name: input
+    type: InstanceDeleteInput!
+- name: instanceDisclaimerSetup
+  returns: InstanceDisclaimerSetupPayload
+  description: Setup instance disclaimer options
+  arguments:
+  - name: input
+    type: InstanceDisclaimerSetupInput!
+- name: instanceExport
+  returns: InstanceExportPayload
+  description: Launch an export of the instance internal use
+  arguments:
+  - name: input
+    type: InstanceExportInput!
+- name: instanceFinishProvisionning
+  returns: InstanceFinishProvisionningPayload
+  description: Reset the steps done/skipped from the onboarding used mostly to reset the onboarding after
+    the provisioning that completed severall steps
+  arguments:
+  - name: input
+    type: InstanceFinishProvisionningInput!
+- name: instanceGoogleAnalyticsUpdate
+  returns: InstanceGoogleAnalyticsUpdatePayload
+  description: Setup Google Analytics Integration's configuration
+  arguments:
+  - name: input
+    type: InstanceGoogleAnalyticsUpdateInput!
+- name: instanceGoogleDriveUpdate
+  returns: InstanceGoogleDriveUpdatePayload
+  description: Setup Google Drive Integration's configuration
+  arguments:
+  - name: input
+    type: InstanceGoogleDriveUpdateInput!
+- name: instanceInvoiceUpdate
+  returns: InstanceInvoiceUpdatePayload
+  description: Updates the invoice's reference with the newly given reference. Passing a None value will
+    erase its value.
+  arguments:
+  - name: input
+    type: InstanceInvoiceUpdateInput!
+- name: instanceLabFlagUpdate
+  returns: InstanceLabFlagUpdatePayload
+  description: Toggles a Lab flag by name, after verifying that the flag is indeed admin-flippable
+  arguments:
+  - name: input
+    type: InstanceLabFlagUpdateInput!
+- name: instanceMicrosoftTeamsUpdate
+  returns: InstanceMicrosoftTeamsUpdatePayload
+  description: Sets the value of the Microsoft Teams feature flag Setting this to False will disable all
+    outbound Teams API calls
+  arguments:
+  - name: input
+    type: InstanceMicrosoftTeamsUpdateInput!
+- name: instanceMobileAppDescriptionsUpdate
+  returns: InstanceMobileAppDescriptionsUpdatePayload
+  description: Update the mobile app descriptions
+  arguments:
+  - name: input
+    type: InstanceMobileAppDescriptionsUpdateInput!
+- name: instanceOfficeOnlineUpdate
+  returns: InstanceOfficeOnlineUpdatePayload
+  description: Enable Office 365 online Integration for end users You can then preview office files as
+    well as edit them directly from the browser
+  arguments:
+  - name: input
+    type: InstanceOfficeOnlineUpdateInput!
+- name: instanceOneDriveUpdate
+  returns: InstanceOneDriveUpdatePayload
+  description: Enable Onedrive Integration for end users You can then add Onedrive blocks in stories as
+    well as importing files from admin
+  arguments:
+  - name: input
+    type: InstanceOneDriveUpdateInput!
+- name: instanceScimConfigUpdate
+  returns: InstanceScimConfigUpdatePayload
+  description: Change instance SCIM configuration
+  arguments:
+  - name: input
+    type: InstanceScimConfigUpdateInput!
+- name: instanceSettingsUpdate
+  returns: InstanceSettingsUpdatePayload!
+  description: Change instance Settings, security, ... Requires me.actions.admin
+  arguments:
+  - name: input
+    type: InstanceSettingsUpdateInput!
+- name: instanceSlackUpdate
+  returns: InstanceSlackUpdatePayload
+  description: Sets the value of the Slack feature flag Setting this to False will disable all outbound
+    Slack API calls
+  arguments:
+  - name: input
+    type: InstanceSlackUpdateInput!
+- name: instanceSsoConfigUpdate
+  returns: InstanceSsoConfigUpdatePayload
+  description: Change instance SSO configuration
+  arguments:
+  - name: input
+    type: InstanceSsoConfigUpdateInput!
+- name: instanceThemeUpdate
+  returns: InstanceThemeUpdatePayload
+  description: Updates the theme settings for an instance of the application. Some of the settings need
+    to have the white-labeling option in the plan
+  arguments:
+  - name: input
+    type: InstanceThemeUpdateInput!
+- name: instanceUpdateSubscription
+  returns: InstanceUpdateSubscriptionPayload
+  description: Updates the subscription (billing) of the instance. You can change plan, seats but you
+    will need a payment intent from Chargebee.
+  arguments:
+  - name: input
+    type: InstanceUpdateSubscriptionInput!
+- name: instanceWorkplaceUpdate
+  returns: InstanceWorkplaceUpdatePayload
+  description: Updates the workplace settings for an instance of the application. This mutation requires
+    an InstanceWorkplaceUpdateInput object that specifies the new workplace settings to be applied.
+  arguments:
+  - name: input
+    type: InstanceWorkplaceUpdateInput!
+- name: meActivateTwoFactor
+  returns: MeActivateTwoFactorPayload
+  description: Verify QrCode and if correct, persist and activate the 2FA for this user. verificationCode
+    Should be a 6 number string it will be verified again the latest qrcode seen (see MePreferences.twoFactorCodeUrl)
+  arguments:
+  - name: input
+    type: MeActivateTwoFactorInput!
+- name: meBookmarksClear
+  returns: MeBookmarksClearPayload
+  description: Clear all the bookmarks of the current user
+  arguments:
+  - name: input
+    type: MeBookmarksClearInput!
+- name: meDeviceTokenPublish
+  returns: MeDeviceTokenPublishPayload
+  description: Will send a PUSH notification to the registered device. This is used only for debugging
+    purposes
+  arguments:
+  - name: input
+    type: MeDeviceTokenPublishInput!
+- name: meDeviceTokenRegister
+  returns: MeDeviceTokenRegisterPayload
+  description: Register a Mobile device for the current user. This will allow to send PUSH notifications
+    to the device for example.
+  arguments:
+  - name: input
+    type: MeDeviceTokenRegisterInput!
+- name: meDeviceTokenUnregister
+  returns: MeDeviceTokenUnregisterPayload
+  description: Remove / de-associate a device from the current user. This will stop push notification
+    to this device
+  arguments:
+  - name: input
+    type: MeDeviceTokenUnregisterInput!
+- name: meDisclaimerAccept
+  returns: MeDisclaimerAcceptPayload
+  description: Mark the "disclaimer" of the current user as accepted
+  arguments:
+  - name: input
+    type: MeDisclaimerAcceptInput!
+- name: meNotificationsPreferences
+  returns: MeNotificationsPreferencesPayload
+  description: Update notification preferences for the current user
+  arguments:
+  - name: input
+    type: MeNotificationsPreferencesInput!
+- name: mePasswordChange
+  returns: MePasswordChangePayload
+  description: Change the password of the current user
+  arguments:
+  - name: input
+    type: MePasswordChangeInput!
+- name: mePreferencesUpdate
+  returns: MePreferencesUpdatePayload
+  description: Update the user's application preferences (emails, language, ...)
+  arguments:
+  - name: input
+    type: MePreferencesUpdateInput!
+- name: mePresenceUpdate
+  returns: MePresenceUpdatePayload
+  description: Update user's presence status on a given device
+  arguments:
+  - name: input
+    type: MePresenceUpdateInput!
+- name: meProfileSetupComplete
+  returns: MeProfileSetupCompletePayload
+  description: Mark the profile setup as complete for the current user Thus the user can be considered
+    as "onboarded" and fully setup
+  arguments:
+  - name: input
+    type: MeProfileSetupCompleteInput!
+- name: meRemoveTwoFactor
+  returns: MeRemoveTwoFactorPayload
+  description: 'Remove a two factor token for the current user. You''ll need to pass current 2fa verificationCode,
+    and current Password to make it work. Note: you can''t remove the 2fa if it''s mandatory on the platform,
+    but you can meActivateTwoFactor again'
+  arguments:
+  - name: input
+    type: MeRemoveTwoFactorInput!
+- name: meServiceReset
+  returns: MeServiceResetPayload
+  description: Reset the token of a given service
+  arguments:
+  - name: input
+    type: MeServiceResetInput!
+- name: meServiceToken
+  returns: MeServiceTokenPayload
+  description: Obtain an Access token or refresh one for a given integration
+  arguments:
+  - name: input
+    type: MeServiceTokenInput!
+- name: meTokenReset
+  returns: MeTokenResetPayload
+  description: Reset or Remove a token for a given service
+  arguments:
+  - name: input
+    type: MeTokenResetInput!
+- name: microsoftTeamsActivitiesConfigUpdate
+  returns: MicrosoftTeamsActivitiesConfigUpdatePayload
+  description: Updates the activities for which a message should be pushed to teams
+  arguments:
+  - name: input
+    type: MicrosoftTeamsActivitiesConfigUpdateInput!
+- name: microsoftTeamsSpacesToChannelRemove
+  returns: MicrosoftTeamsSpacesToChannelRemovePayload
+  description: Removes the "Elium space to Microsoft Teams channel mapping" (SpacesToChannelItem) if it
+    exists
+  arguments:
+  - name: input
+    type: MicrosoftTeamsSpacesToChannelRemoveInput!
+- name: microsoftTeamsSpacesToChannelUpdate
+  returns: MicrosoftTeamsSpacesToChannelUpdatePayload
+  description: Add a Mapping between a space and a Microsoft Teams channel
+  arguments:
+  - name: input
+    type: MicrosoftTeamsSpacesToChannelUpdateInput!
+- name: microsoftTeamsTabEmbed
+  returns: MicrosoftTeamsTabEmbedPayload
+  description: Embed an Elium tab as a Teams Website tab (that will only work in the Teams desktop app,
+    not the web app)
+  arguments:
+  - name: input
+    type: MicrosoftTeamsTabEmbedInput!
+- name: notificationPin
+  returns: NotificationPinPayload
+  description: Pin/Unpin a notification Pining a notification will make it appear in the "pinned" list
+    of notifications
+  arguments:
+  - name: input
+    type: NotificationPinInput!
+- name: notificationsRead
+  returns: NotificationsReadPayload
+  description: Mark a list of notifications as read
+  arguments:
+  - name: input
+    type: NotificationsReadInput!
+- name: notificationsReadAll
+  returns: NotificationsReadAllPayload
+  description: Mark ALL notifications as read
+  arguments:
+  - name: input
+    type: NotificationsReadAllInput!
+- name: notificationsSeenAll
+  returns: NotificationsSeenAllPayload
+  description: Mark All notifications as seen (seen notifications are not displayed in the "new" section
+    of the notifications list)
+  arguments:
+  - name: input
+    type: NotificationsSeenAllInput!
+- name: notificationsUnread
+  returns: NotificationsUnreadPayload
+  description: Mark a notification as unread Probably used for debugging purposes
+  arguments:
+  - name: input
+    type: NotificationsUnreadInput!
+- name: organizationCreate
+  returns: OrganizationCreatePayload
+  description: Create a new organization with default settings
+  arguments:
+  - name: input
+    type: OrganizationCreateInput!
+- name: organizationDelete
+  returns: OrganizationDeletePayload
+  description: Delete the specified organization
+  arguments:
+  - name: input
+    type: OrganizationDeleteInput!
+- name: organizationUpdate
+  returns: OrganizationUpdatePayload
+  description: Update the specified organization configuration and name
+  arguments:
+  - name: input
+    type: OrganizationUpdateInput!
+- name: schemaAttributeCreate
+  returns: SchemaAttributeCreatePayload
+  description: Create a StorySchema attribute you'll need schema edition right
+  arguments:
+  - name: input
+    type: SchemaAttributeCreateInput!
+- name: schemaAttributeDelete
+  returns: SchemaAttributeDeletePayload
+  description: Delete a Template field, remove the field from all content
+  arguments:
+  - name: input
+    type: SchemaAttributeDeleteInput!
+- name: schemaAttributeOptionCreate
+  returns: SchemaAttributeOptionCreatePayload
+  description: Create a new value to be used in a SchemaAttribute (applicable for attribute of TAG or
+    TAG_LIST type => create a new tag in the facet)
+  arguments:
+  - name: input
+    type: SchemaAttributeOptionCreateInput!
+- name: schemaAttributeUpdate
+  returns: SchemaAttributeUpdatePayload
+  description: Update a StorySchema attribute (label, description) It's not possible to change the type
+    of an attribute
+  arguments:
+  - name: input
+    type: SchemaAttributeUpdateInput!
+- name: schemaSeparatorCreate
+  returns: SchemaSeparatorCreatePayload
+  description: Create a new SchemaSeparator for display in a StorySchema
+  arguments:
+  - name: input
+    type: SchemaSeparatorCreateInput!
+- name: searchFeedback
+  returns: SearchFeedbackPayload
+  description: Post a feedback about missing content in search results for your administrators.
+  arguments:
+  - name: input
+    type: SearchFeedbackInput!
+- name: searchHistoryPost
+  returns: SearchHistoryPostPayload
+  description: Insert search query history for later use like stats and improvements
+  arguments:
+  - name: input
+    type: SearchHistoryPostInput!
+- name: sharePointAddSearchTab
+  returns: SharePointAddSearchTabPayload
+  description: Create a new SharepointSearchTab integration for users
+  arguments:
+  - name: input
+    type: SharePointAddSearchTabInput!
+- name: sharePointRemoveSearchTab
+  returns: SharePointRemoveSearchTabPayload
+  description: Remove a SharepointSearchTab from the current instance (users won't be able to use it anymore
+    to search contents)
+  arguments:
+  - name: input
+    type: SharePointRemoveSearchTabInput!
+- name: sharePointSearchTabUpdate
+  returns: SharePointSearchTabUpdatePayload
+  description: Modify an exisiting sharePointSearchTab SharepointSearchTab
+  arguments:
+  - name: input
+    type: SharePointSearchTabUpdateInput!
+- name: slackActivitiesConfigUpdate
+  returns: SlackActivitiesConfigUpdatePayload
+  description: Updates the activities for which a message should be pushed to Slack
+  arguments:
+  - name: input
+    type: SlackActivitiesConfigUpdateInput!
+- name: slackSpacesToChannelRemove
+  returns: SlackSpacesToChannelRemovePayload
+  description: Removes the "Elium space to Slack channel mapping" (SpacesToChannelItem) if it exists
+  arguments:
+  - name: input
+    type: SlackSpacesToChannelRemoveInput!
+- name: slackSpacesToChannelUpdate
+  returns: SlackSpacesToChannelUpdatePayload
+  description: Add a Mapping between a space and a Slack channel.
+  arguments:
+  - name: input
+    type: SlackSpacesToChannelUpdateInput!
+- name: smartAssistantCreate
+  returns: SmartAssistantCreatePayload
+  description: Create a new SmartAssistant require MeActions.smartAssistantsManage to be able to create
+    one.
+  arguments:
+  - name: input
+    type: SmartAssistantCreateInput!
+- name: smartAssistantDelete
+  returns: SmartAssistantDeletePayload
+  description: Delete a SmartAssistant require MeActions.smartAssistantsManage to be able to remove it.
+  arguments:
+  - name: input
+    type: SmartAssistantDeleteInput!
+- name: smartAssistantOrder
+  returns: SmartAssistantOrderPayload
+  description: Order the list of SmartAssistant require MeActions.smartAssistantsManage
+  arguments:
+  - name: input
+    type: SmartAssistantOrderInput!
+- name: smartAssistantUpdate
+  returns: SmartAssistantUpdatePayload
+  description: Update a given SmartAssistant require MeActions.smartAssistantsManage to be able to edit
+    one.
+  arguments:
+  - name: input
+    type: SmartAssistantUpdateInput!
+- name: smartConversationArchive
+  returns: SmartConversationArchivePayload
+  description: Archive a given SmartConversation
+  arguments:
+  - name: input
+    type: SmartConversationArchiveInput!
+- name: smartConversationCreate
+  returns: SmartConversationCreatePayload
+  description: 'Create a new SmartConversation: Sesssion of a conversation with a SmartAssistant'
+  arguments:
+  - name: input
+    type: SmartConversationCreateInput!
+- name: smartConversationDelete
+  returns: SmartConversationDeletePayload
+  description: Delete a SmartConversation
+  arguments:
+  - name: input
+    type: SmartConversationDeleteInput!
+- name: smartConversationPostMessage
+  returns: SmartConversationPostMessagePayload
+  description: Append Messages to a given SmartConversation
+  arguments:
+  - name: input
+    type: SmartConversationPostMessageInput!
+- name: smartConversationUpdate
+  returns: SmartConversationUpdatePayload
+  description: Update a given SmartConversation
+  arguments:
+  - name: input
+    type: SmartConversationUpdateInput!
+- name: smartFeedCreate
+  returns: SmartFeedCreatePayload
+  description: Create a new SmartFeed require MeActions.smartFeedsManage to be able to create one.
+  arguments:
+  - name: input
+    type: SmartFeedCreateInput!
+- name: smartFeedDelete
+  returns: SmartFeedDeletePayload
+  description: Delete a SmartFeed require MeActions.smartFeedsManage to be able to remove it.
+  arguments:
+  - name: input
+    type: SmartFeedDeleteInput!
+- name: smartFeedOrder
+  returns: SmartFeedOrderPayload
+  description: Order the list of SmartFeed require MeActions.smartFeedsManage
+  arguments:
+  - name: input
+    type: SmartFeedOrderInput!
+- name: smartFeedUpdate
+  returns: SmartFeedUpdatePayload
+  description: Update a given SmartFeed require MeActions.smartFeedsManage to be able to edit one.
+  arguments:
+  - name: input
+    type: SmartFeedUpdateInput!
+- name: spaceAccept
+  returns: SpaceAcceptPayload
+  description: Accept or reject a space creation request (space with status Pending) (see spaceRequestAccept
+    to accept a members in an existing space)
+  arguments:
+  - name: input
+    type: SpaceAcceptInput!
+- name: spaceAdd
+  returns: SpaceAddPayload
+  description: Create a new space. require MeActions.spaceAdd or SpaceGroupActions.spaceAdd depending
+    on your input
+  arguments:
+  - name: input
+    type: SpaceAddInput!
+- name: spaceAddRequest
+  returns: SpaceAddRequestPayload
+  description: Send a request to create a space. This will notify administrator of the platform. you need
+    MeActions.spaceAddRequest or SpaceGroupActions.spaceAddRequest depending on your input
+  arguments:
+  - name: input
+    type: SpaceAddRequestInput!
+- name: spaceChangeStatus
+  returns: SpaceChangeStatusPayload
+  description: Close an existing Space you need SpaceActions.edit to be able to close a space
+  arguments:
+  - name: input
+    type: SpaceChangeStatusInput!
+- name: spaceDelete
+  returns: SpaceDeletePayload
+  description: Delete an existing Space you need SpaceActions.delete to be able to delete a space
+  arguments:
+  - name: input
+    type: SpaceDeleteInput!
+- name: spaceFavorite
+  returns: SpaceFavoritePayload
+  description: Favorite a space you are member of.
+  arguments:
+  - name: input
+    type: SpaceFavoriteInput!
+- name: spaceGroupAdd
+  returns: SpaceGroupAddPayload
+  description: Create a new SpaceGroup you need MeActions.spaceGroupAdd
+  arguments:
+  - name: input
+    type: SpaceGroupAddInput!
+- name: spaceGroupDelete
+  returns: SpaceGroupDeletePayload
+  description: Delete a SpaceGroup you need SpaceGroupActions.edit
+  arguments:
+  - name: input
+    type: SpaceGroupDeleteInput!
+- name: spaceGroupOrder
+  returns: SpaceGroupOrderPayload
+  description: Order SpaceGroups between each others
+  arguments:
+  - name: input
+    type: SpaceGroupOrderInput!
+- name: spaceGroupUpdate
+  returns: SpaceGroupUpdatePayload
+  description: Update a given SpaceGroup's settings and configuration
+  arguments:
+  - name: input
+    type: SpaceGroupUpdateInput!
+- name: spaceJoin
+  returns: SpaceJoinPayload
+  description: Join a Space requires Space.actions.join, you'll then see news about this in your feeds.
+    You may also use spaceRequest for moderated spaces
+  arguments:
+  - name: input
+    type: SpaceJoinInput!
+- name: spaceLeave
+  returns: SpaceLeavePayload
+  description: Join a Space requires Space.actions.leave
+  arguments:
+  - name: input
+    type: SpaceLeaveInput!
+- name: spaceMemberAdd
+  returns: SpaceMemberAddPayload
+  description: Add a new member(s) (User, Team) to a Space
+  arguments:
+  - name: input
+    type: SpaceMemberAddInput!
+- name: spaceMemberDelete
+  returns: SpaceMemberDeletePayload
+  description: Remove a SpaceMember from a Space
+  arguments:
+  - name: input
+    type: SpaceMemberDeleteInput!
+- name: spaceMemberRole
+  returns: SpaceMemberRolePayload
+  description: Change the role of a SpaceMember in the Space
+  arguments:
+  - name: input
+    type: SpaceMemberRoleInput!
+- name: spaceOrder
+  returns: SpaceOrderPayload
+  description: Order spaces in a SpaceGroup. Spaces can Only be ordered inside their Common SaceGroups
+  arguments:
+  - name: input
+    type: SpaceOrderInput!
+- name: spaceRequest
+  returns: SpaceRequestPayload
+  description: Request membership to a space you can't join directly you need SpaceActions.request to
+    be able to request a space also see spaceJoin to join a space directly
+  arguments:
+  - name: input
+    type: SpaceRequestInput!
+- name: spaceRequestAccept
+  returns: SpaceRequestAcceptPayload
+  description: Accept or reject a member request to join a space (need SpaceActions.edit)
+  arguments:
+  - name: input
+    type: SpaceRequestAcceptInput!
+- name: spaceStatus
+  returns: SpaceStatusPayload
+  description: Change A given space Status to closed or open
+  arguments:
+  - name: input
+    type: SpaceStatusInput!
+- name: spaceTabDelete
+  returns: SpaceTabDeletePayload
+  description: Delete a SpaceTab of a given space
+  arguments:
+  - name: input
+    type: SpaceTabDeleteInput!
+- name: spaceTabOrder
+  returns: SpaceTabOrderPayload
+  description: Order the SpaceTab of a given space
+  arguments:
+  - name: input
+    type: SpaceTabOrderInput!
+- name: spaceTabUpdate
+  returns: SpaceTabUpdatePayload
+  description: Update or create a SpaceTab. If you create a new one, don't pass an id and make sure to
+    give a type
+  arguments:
+  - name: input
+    type: SpaceTabUpdateInput!
+- name: spaceUnFavorite
+  returns: SpaceUnFavoritePayload
+  description: Remove a space from your favorites.
+  arguments:
+  - name: input
+    type: SpaceUnFavoriteInput!
+- name: spaceUnrequest
+  returns: SpaceUnrequestPayload
+  description: Remove the request of a space creation
+  arguments:
+  - name: input
+    type: SpaceUnrequestInput!
+- name: spaceUpdate
+  returns: SpaceUpdatePayload
+  description: Update the configuration of a given space (name, description, logo, etc.) need SpaceActions.edit
+    to be able to update a space
+  arguments:
+  - name: input
+    type: SpaceUpdateInput!
+- name: spaceUpdatePinned
+  returns: SpaceUpdatePinnedPayload
+  description: Update a list of "pinned" Stories, that will appear at the top of the space
+  arguments:
+  - name: input
+    type: SpaceUpdatePinnedInput!
+- name: storyAlert
+  returns: StoryAlertPayload
+  description: Send an Alert to the given recipients. This includes, user ids, space ids and team ids
+    all filtered by their permissions. this alert will be visible until either the user dismiss it or
+    the alert is archived
+  arguments:
+  - name: input
+    type: StoryAlertInput!
+- name: storyAlertArchive
+  returns: StoryAlertArchivePayload
+  description: Archive an existing broadcast
+  arguments:
+  - name: input
+    type: StoryAlertArchiveInput!
+- name: storyAlertsRead
+  returns: StoryAlertsReadPayload
+  description: Mark a StoryAlert as read
+  arguments:
+  - name: input
+    type: StoryAlertsReadInput!
+- name: storyApprovalAssign
+  returns: StoryApprovalAssignPayload
+  description: Change the approver of a StoryApproval.
+  arguments:
+  - name: input
+    type: StoryApprovalAssignInput!
+- name: storyApprovalCancel
+  returns: StoryApprovalCancelPayload
+  description: Cancel a StoryApproval.
+  arguments:
+  - name: input
+    type: StoryApprovalCancelInput!
+- name: storyApprovalEdit
+  returns: StoryApprovalEditPayload
+  description: Change the status of a StoryApproval.
+  arguments:
+  - name: input
+    type: StoryApprovalEditInput!
+- name: storyApprovalRequest
+  returns: StoryApprovalRequestPayload
+  description: Request an Approval on a given story.
+  arguments:
+  - name: input
+    type: StoryApprovalRequestInput!
+- name: storyApprovalStatus
+  returns: StoryApprovalStatusPayload
+  description: Change the status of a StoryApproval.
+  arguments:
+  - name: input
+    type: StoryApprovalStatusInput!
+- name: storyArchive
+  returns: StoryArchivePayload
+  description: 'Archive or Unarchive a story. archived give the status (true: archived, false: unarchive)'
+  arguments:
+  - name: input
+    type: StoryArchiveInput!
+- name: storyBookmark
+  returns: StoryBookmarkPayload
+  description: Mark a story as bookmarked or not for the current user this will allow you to find it easily
+    in your bookmarks
+  arguments:
+  - name: input
+    type: StoryBookmarkInput!
+- name: storyBroadcast
+  returns: StoryBroadcastPayload
+  description: Send a broadcast (mail) to the given recipients. This includes, user ids and space ids
+    all filtered by their permissions.
+  arguments:
+  - name: input
+    type: StoryBroadcastInput!
+- name: storyChangeOwner
+  returns: StoryChangeOwnerPayload
+  description: Change a Story's owner This will affect the rights and visibility of the story
+  arguments:
+  - name: input
+    type: StoryChangeOwnerInput!
+- name: storyDelete
+  returns: StoryDeletePayload
+  description: Delete a Single Story
+  arguments:
+  - name: input
+    type: StoryDeleteInput!
+- name: storyDuplicate
+  returns: StoryDuplicatePayload
+  description: Create a duplicate of a given story. this will copy the title, body, assets, tags, and
+    other attributes of the story
+  arguments:
+  - name: input
+    type: StoryDuplicateInput!
+- name: storyEdit
+  returns: StoryEditPayload
+  description: Create a new version a given story. the newly created version will be accessible using
+    story.editVersion
+  arguments:
+  - name: input
+    type: StoryEditInput!
+- name: storyExpire
+  returns: StoryExpirePayload
+  description: Mark a story Expiration date. If you put Null in expirationDate, you'll cleanup the expiration
+  arguments:
+  - name: input
+    type: StoryExpireInput!
+- name: storyFollow
+  returns: StoryFollowPayload
+  description: Subscribe to a content. This will have effect on your notifications.
+  arguments:
+  - name: input
+    type: StoryFollowInput!
+- name: storyGrant
+  returns: StoryGrantPayload
+  description: Manage grants for a given Story. You can add or remove additional visibilty for users
+  arguments:
+  - name: input
+    type: StoryGrantInput!
+- name: storyInviteContributors
+  returns: StoryInviteContributorsPayload
+  description: Invite users to contribute to a content. This will send a notification with the message.but
+    won't add any permission/special rights to the invited users. Users can be invited multiple times
+  arguments:
+  - name: input
+    type: StoryInviteContributorsInput!
+- name: storyLock
+  returns: StoryLockPayload
+  description: Take a lock on a Story for edition while the lock is active, nobody will be able to make
+    new version on the content. see storyLockRefresh and StoryEditInput.lockToken
+  arguments:
+  - name: input
+    type: StoryLockInput!
+- name: storyLockRefresh
+  returns: StoryLockRefreshPayload
+  description: Bump the expiration of a current StoryLock the user has on a content you can also take
+    a new one if the lock was expired
+  arguments:
+  - name: input
+    type: StoryLockRefreshInput!
+- name: storyMigrate
+  returns: StoryMigratePayload
+  description: Deprecated do not use
+  arguments:
+  - name: input
+    type: StoryMigrateInput!
+- name: storyPin
+  returns: StoryPinPayload
+  description: Promote or Demote a story in the current Space or (if global is true) for the whole platform.
+    Promoting a story for the whole platform will respect stories visibility.
+  arguments:
+  - name: input
+    type: StoryPinInput!
+- name: storyPing
+  returns: StoryPingPayload
+  description: Send an Invitation to Read (in app + email) to the given recipients. This includes, user
+    ids, space ids and team ids all filtered by their permissions.
+  arguments:
+  - name: input
+    type: StoryPingInput!
+- name: storyPost
+  returns: StoryPostPayload
+  description: Create a new story.
+  arguments:
+  - name: input
+    type: StoryPostInput!
+- name: storyPublicShare
+  returns: StoryPublicSharePayload
+  description: Share publicly a story or edit the related settings
+  arguments:
+  - name: input
+    type: StoryPublicShareInput!
+- name: storyRelate
+  returns: StoryRelatePayload
+  description: Link a story to another story Some of the link are automatically added
+  arguments:
+  - name: input
+    type: StoryRelateInput!
+- name: storyRemoveTranslation
+  returns: StoryRemoveTranslationPayload
+  description: Remove a translation from the latest version of a translated Story
+  arguments:
+  - name: input
+    type: StoryRemoveTranslationInput!
+- name: storyReshare
+  returns: StoryResharePayload
+  description: Create a "Reshare" of a given story Reshares are not editable, automatically linked to
+    the original story and automatically updated. Feed of comments and likes are not shared between the
+    original and the reshare.
+  arguments:
+  - name: input
+    type: StoryReshareInput!
+- name: storySchemaAttributeOrder
+  returns: StorySchemaAttributeOrderPayload
+  description: Manually order the attributes of a StorySchema
+  arguments:
+  - name: input
+    type: StorySchemaAttributeOrderInput!
+- name: storySchemaConvert
+  returns: StorySchemaConvertPayload
+  description: Convert a regular story to Story with a template
+  arguments:
+  - name: input
+    type: StorySchemaConvertInput!
+- name: storySchemaCreate
+  returns: StorySchemaCreatePayload
+  description: Create A StorySchema, also known as a Template
+  arguments:
+  - name: input
+    type: StorySchemaCreateInput!
+- name: storySchemaDisable
+  returns: StorySchemaDisablePayload
+  description: Mark A StorySchema as disabled (not usable for regular user anymore)
+  arguments:
+  - name: input
+    type: StorySchemaDisableInput!
+- name: storySchemaOrder
+  returns: StorySchemaOrderPayload
+  description: Reorder the list of StorySchema
+  arguments:
+  - name: input
+    type: StorySchemaOrderInput!
+- name: storySchemaUpdate
+  returns: StorySchemaUpdatePayload
+  description: Update Fields and configuration of a StorySchema
+  arguments:
+  - name: input
+    type: StorySchemaUpdateInput!
+- name: storyShareUpdate
+  returns: StoryShareUpdatePayload
+  description: Update a Reshared Story's Message The message explains why the story is reshared, often
+    displayed in the stories comments
+  arguments:
+  - name: input
+    type: StoryShareUpdateInput!
+- name: storySpace
+  returns: StorySpacePayload
+  description: Change Space and visibility of a story
+  arguments:
+  - name: input
+    type: StorySpaceInput!
+- name: storyTag
+  returns: StoryTagPayload
+  description: 'Edit tags of a story returns: ignoredTags and ignoredHashtags is filled with tags and
+    hashtags that couldn''t be set to the story (probably because of a schema field)'
+  arguments:
+  - name: input
+    type: StoryTagInput!
+- name: storyTranslate
+  returns: StoryTranslatePayload
+  description: Enable the translation of a story add define the language of the original content. This
+    operation is irreversible.
+  arguments:
+  - name: input
+    type: StoryTranslateInput!
+- name: storyUndelete
+  returns: StoryUndeletePayload
+  description: Restore a story. Restricted space (or platform) administrators.
+  arguments:
+  - name: input
+    type: StoryUndeleteInput!
+- name: storyUnlock
+  returns: StoryUnlockPayload
+  description: Release a lock on a content, indicating nobody is working on that content anymore
+  arguments:
+  - name: input
+    type: StoryUnlockInput!
+- name: storyVersionDelete
+  returns: StoryVersionDeletePayload
+  description: Delete a story Version This will delete a version from the list of version. Current limitation
+    is that you can't delete the latest published version requires story.actions.deleteVersion
+  arguments:
+  - name: input
+    type: StoryVersionDeleteInput!
+- name: storyVersionRestore
+  returns: StoryVersionRestorePayload
+  description: Restore a Story to a given version. This will create a new version on top, and restore
+    ALL bodies, assets, highlight, attributes, titles of that given version requires story.actions.edit
+  arguments:
+  - name: input
+    type: StoryVersionRestoreInput!
+- name: subscriptionRemove
+  returns: SubscriptionRemovePayload
+  description: Remove GraphQL subscription (stop listening to events)
+  arguments:
+  - name: input
+    type: SubscriptionRemoveInput!
+- name: tagCreate
+  returns: TagCreatePayload
+  description: Create a single tag in the facet facetId.
+  arguments:
+  - name: input
+    type: TagCreateInput!
+- name: tagDelete
+  returns: TagDeletePayload
+  description: Remove a tag from the facet
+  arguments:
+  - name: input
+    type: TagDeleteInput!
+- name: tagUpdate
+  returns: TagUpdatePayload
+  description: Edit a Tag name and Facet
+  arguments:
+  - name: input
+    type: TagUpdateInput!
+- name: teamCreate
+  returns: TeamCreatePayload
+  description: 'Create a new team this require the correct plan: InstanceLimits.teams as well as admin
+    rights InstanceActions.teamEdit'
+  arguments:
+  - name: input
+    type: TeamCreateInput!
+- name: teamMemberAdd
+  returns: TeamMemberAddPayload
+  description: 'Add a new member(s) to a Team this require the correct plan: InstanceLimits.teams as well
+    as admin rights InstanceActions.teamEdit'
+  arguments:
+  - name: input
+    type: TeamMemberAddInput!
+- name: teamMemberDelete
+  returns: TeamMemberDeletePayload
+  description: 'Remove a TeamMember from a Team this require the correct plan: InstanceLimits.teams as
+    well as admin rights InstanceActions.teamEdit'
+  arguments:
+  - name: input
+    type: TeamMemberDeleteInput!
+- name: teamUpdate
+  returns: TeamUpdatePayload
+  description: 'Update the specified team configuration and name this require the correct plan: InstanceLimits.teams
+    as well as admin rights InstanceActions.teamEdit'
+  arguments:
+  - name: input
+    type: TeamUpdateInput!
+- name: teamsDelete
+  returns: TeamsDeletePayload
+  description: 'Delete the specified teams this require the correct plan: InstanceLimits.teams as well
+    as admin rights InstanceActions.teamEdit'
+  arguments:
+  - name: input
+    type: TeamsDeleteInput!
+- name: userCover
+  returns: UserCoverPayload
+  description: Update the cover of a user profile.
+  arguments:
+  - name: input
+    type: UserCoverInput!
+- name: userEdit
+  returns: UserEditPayload
+  description: Edit user profile information. (email, name, etc.)
+  arguments:
+  - name: input
+    type: UserEditInput!
+- name: userFollow
+  returns: UserFollowPayload
+  description: Follow another user. deprecated
+  arguments:
+  - name: input
+    type: UserFollowInput!
+- name: userPhoto
+  returns: UserPhotoPayload
+  description: Upload a photo for a user profile.
+  arguments:
+  - name: input
+    type: UserPhotoInput!
+- name: userRegister
+  returns: UserRegisterPayload
+  description: Register a new user with a registration token received by email or via an URL link sent
+    by an administrator. The user is already known but needs to be confirmed and configured.
+  arguments:
+  - name: input
+    type: UserRegisterInput!
+- name: userSignup
+  returns: UserSignupPayload
+  description: Sign up a new user with a registration token received by email if the platform is in "self
+    service" mode where accounts are not pre configured @see userRegister
+  arguments:
+  - name: input
+    type: UserSignupInput!
+- name: userSuccessions
+  returns: UserSuccessionsPayload
+  description: Create, update or delete user succession for one or multiple spaces
+  arguments:
+  - name: input
+    type: UserSuccessionsInput!
+subscriptions:
+- name: annotationAdded
+  returns: AnnotationAddedPayload
+  description: Subscription about Annotation beeing added on the a given Story
+  arguments:
+  - name: input
+    type: AnnotationAddedInput!
+- name: annotationCommentAdded
+  returns: AnnotationCommentAddedPayload
+  description: Subscription about AnnotationComment beeing added to the given Annotation
+  arguments:
+  - name: input
+    type: AnnotationCommentAddedInput!
+- name: annotationCommentDeleted
+  returns: AnnotationCommentDeletedPayload
+  description: Subscription about AnnotationComment beeing deleted on a given Annotation
+  arguments:
+  - name: input
+    type: AnnotationCommentDeletedInput!
+- name: annotationCommentEdited
+  returns: AnnotationCommentEditedPayload
+  description: Subscription about AnnotationComment beeing edited (~comment) on a given Annotation
+  arguments:
+  - name: input
+    type: AnnotationCommentEditedInput!
+- name: annotationEdited
+  returns: AnnotationEditedPayload
+  description: Subscription about Annotation beeing edited (change status, comment changed, ...) on the
+    a given Story
+  arguments:
+  - name: input
+    type: AnnotationEditedInput!
+- name: commentAdded
+  returns: CommentAddedPayload
+  description: Subscription about Comment beeing added on a given Story
+  arguments:
+  - name: input
+    type: CommentAddedInput!
+- name: commentDeleted
+  returns: CommentDeletedPayload
+  description: Subscribe to deletion of a comment
+  arguments:
+  - name: input
+    type: CommentDeletedInput!
+- name: commentEdited
+  returns: CommentEditedPayload
+  description: Subscribe to modifications done to a given comment's body or attachments
+  arguments:
+  - name: input
+    type: CommentEditedInput!
+- name: contentLiked
+  returns: ContentLikedPayload
+  description: Subscribe when a single content is Liked or Unliked
+  arguments:
+  - name: input
+    type: ContentLikedInput!
+- name: notificationAdded
+  returns: NotificationAddedPayload
+  description: Subscribe to Newly added notifications of the current user
+  arguments:
+  - name: input
+    type: NotificationAddedInput!
+- name: notificationCount
+  returns: NotificationCountPayload
+  description: Subscribe to the changed of count of unread notifications of the current user
+  arguments:
+  - name: input
+    type: NotificationCountInput!
+- name: notificationUpdated
+  returns: NotificationUpdatedPayload
+  description: Subscribe to update of the user's single notification (reading status, ...)
+  arguments:
+  - name: input
+    type: NotificationUpdatedInput!
+- name: onboardingStepCompleted
+  returns: OnboardingStepCompletedPayload
+  description: Subscription to Instance to get an updated onboardingCompletedSteps and onboardingCompleted
+  arguments:
+  - name: input
+    type: OnboardingStepCompletedInput!
+- name: storyAlertAdded
+  returns: StoryAlertAddedPayload
+  description: Subscription to new enabled user side StoryAlerts.
+  arguments:
+  - name: input
+    type: StoryAlertAddedInput!
+- name: storyAlertUpdated
+  returns: StoryAlertUpdatedPayload
+  description: Subscription to archived or marked as read StoryAlerts.
+  arguments:
+  - name: input
+    type: StoryAlertUpdatedInput!
+- name: storyLocked
+  returns: StoryLockedPayload
+  description: Subscribe to Locking and unlocking of a Story This is usually used to avoid multiple users
+    editing the same content at the same time
+  arguments:
+  - name: input
+    type: StoryLockedInput!
+- name: storyUpdated
+  returns: StoryUpdatedPayload
+  description: Subscription to Story edition. When a story recieve a new version.
+  arguments:
+  - name: input
+    type: StoryUpdatedInput!
+- name: userPresenceUpdated
+  returns: UserPresenceUpdatedPayload
+  description: Subscribe to presence of a user on a given product (mobile, web, ...)
+  arguments:
+  - name: input
+    type: UserPresenceUpdatedInput!

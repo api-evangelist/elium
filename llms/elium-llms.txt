@@ -1,0 +1,164 @@
+# Elium
+
+> Elium is a knowledge management SaaS app that helps teams capture, structure, and share company knowledge.
+
+Elium is a European enterprise knowledge platform, used by 150,000+ users across 150+ organisations. It serves governed knowledge to people and to AI agents: teams capture and validate knowledge once, then deliver it through AI search, assistants, portals and integrations. Pages below are in English; French versions live under /fr (for example https://elium.com/fr/pricing). The complete URL list is in https://elium.com/sitemap.xml.
+
+Blog posts and customer stories are also served as markdown: append .md to the page URL. Product documentation lives at https://help.elium.com.
+
+## Platform and product
+
+- [Platform](https://elium.com/platform): One platform setup shared by every team: AI, sovereignty, connectors and identity.
+- [AI Search](https://elium.com/product/ai-search): One AI search across the knowledge base, for people and AI agents, with cited and permission-aware answers.
+- [Smart Assistants](https://elium.com/product/smart-assistants): Conversational AI assistants grounded in the knowledge base, scoped to a team or topic.
+- [Connect with your AI](https://elium.com/product/connect-your-ai): Serve governed knowledge to your own AI tools through MCP, an open API and native connectors.
+- [AI Import](https://elium.com/product/ai-import): Import files, drives or whole platforms; AI turns them into structured native content.
+- [Content Editor](https://elium.com/product/content-editor): Structured block-based editor with AI drafting, inline translation and rich media.
+- [Structured Templates](https://elium.com/product/templates): Templates with predefined fields that keep every article consistent.
+- [Decision Tree](https://elium.com/product/decision-tree): Guided step-by-step trees for support ticket resolution.
+- [Multilingual Knowledge](https://elium.com/product/multilingual): One governed article per topic, translated in place; readers and AI get answers in their own language.
+- [Multi-Step Approval](https://elium.com/product/multi-step-approval): Configurable sign-off flows before content goes live.
+- [Expiration Management](https://elium.com/product/expiration-management): Verification periods and alerts that keep knowledge current.
+- [Duplicate Detection](https://elium.com/product/duplicate-detection): AI flags semantic overlaps before publication and suggests merges.
+- [Gap Detection](https://elium.com/product/gap-detection): Finds the questions your knowledge cannot answer and routes them to an owner.
+- [Digest & Alerts](https://elium.com/product/digest-alerts): Proactive notifications and personalised digests.
+- [360° Analytics](https://elium.com/product/analytics): One analytics layer across content, search and AI usage.
+- [External Portals](https://elium.com/product/external-portals): Self-service knowledge portals for employees, customers and partners.
+
+## Solutions
+
+- [Global Operations](https://elium.com/solutions/global-operations): One governed knowledge base across every site, language and team.
+- [Customer Service](https://elium.com/solutions/customer-service): Validated answers for every advisor, plus customer self-service.
+- [IT Support](https://elium.com/solutions/it-support): Procedures every IT technician can find in seconds.
+- [AI & Data](https://elium.com/solutions/ai-data): One governed, RAG-ready corpus behind your AI agents, AI copilots and AI apps.
+- [Strategy & Market Research](https://elium.com/solutions/strategy-market-research): Knowledge infrastructure for competitive intelligence and strategy teams.
+
+## Integrations
+
+- [Integrations directory](https://elium.com/integrations): All integrations and connectors, by category.
+- [Microsoft 365](https://elium.com/integrations/microsoft-365): SharePoint, Microsoft Teams and Power BI integrations.
+- [Google Workspace](https://elium.com/integrations/google-workspace): Google Drive and Google Workspace integrations.
+
+## Evaluating Elium
+
+- [Why Elium](https://elium.com/why-elium): Trusted knowledge for humans and AI, from a company independent by design.
+- [Pricing](https://elium.com/pricing): Plans and pricing.
+- [Compare](https://elium.com/compare): How Elium compares with other knowledge management platforms.
+- [Elium vs Confluence](https://elium.com/compare/confluence): Compare Elium and Confluence as knowledge management platforms: governance, AI answers, languages, migration. See why teams switch – and how easy it is.
+- [Elium vs Notion](https://elium.com/compare/notion): Compare Elium and Notion for enterprise knowledge management: governance roles, analytics at every level, grounded AI answers, integrations, migration.
+- [Elium vs SharePoint](https://elium.com/compare/sharepoint): Compare Elium and SharePoint for knowledge management: governance, Copilot-ready answers, migration. See why teams add Elium on top – and how easy it is.
+- [Elium vs Google Drive](https://elium.com/compare/google-drive): Compare Elium and Google Drive for knowledge management: governed answers above the files, AI grounding, EU hosting. See why teams add Elium on top.
+- [Elium vs OneNote](https://elium.com/compare/onenote): Compare Elium and OneNote for knowledge management: shared ownership, governance, AI answers, migration. See why teams move their knowledge to Elium.
+- [Elium vs Alfresco](https://elium.com/compare/alfresco): Compare Elium and Alfresco for knowledge management: governance, AI answers, migration. See why teams move their knowledge to Elium – and how easy it is.
+- [Elium vs an in-house solution](https://elium.com/compare/in-house): Compare Elium with building an in-house RAG or internal GPT: knowledge governance, maintenance cost, certifications, time to live. The buy-vs-build case.
+- [Switch to Elium](https://elium.com/switch): Migration paths, open formats in and out, no lock-in.
+- [Buy vs Build](https://elium.com/buy-vs-build): Why teams buy the knowledge layer under their RAG instead of building it.
+- [On-Premise](https://elium.com/on-premise): Run Elium inside your own perimeter, with full data sovereignty.
+- [Book a demo](https://elium.com/demo): Request a personalised demo.
+- [Contact](https://elium.com/contact): Talk to an advisor.
+
+## Trust and security
+
+- [Trust Center](https://elium.com/trust): Security, privacy and compliance documentation, including ISO 27001 and GDPR.
+- [Security controls](https://elium.com/trust/controls): Detailed list of security and compliance controls.
+- [Subprocessors](https://elium.com/trust/subprocessors): Current subprocessor list.
+
+## Customer stories
+
+- [Customer stories](https://elium.com/customer-stories): All case studies in one place.
+- [FNAC DARTY](https://elium.com/customer-stories/fnac-darty): Retail giant Fnac Darty cuts customer call times by 10% with better knowledge management
+- [L'Oréal](https://elium.com/customer-stories/loreal): How L'Oréal Opérations united 22,000 people on a single knowledge platform its AI agents can trust
+- [SPIE ICS](https://elium.com/customer-stories/spie-ics): SPIE ICS absorbs 540,000 support requests a year with 140 agents and one knowledge base
+- [BCG](https://elium.com/customer-stories/bcg): BCG's in-house legal team cut 12,000 documents to 2,500 and reached 73% monthly use
+- [Bouygues Construction](https://elium.com/customer-stories/bouygues): How Bouygues Construction's HR function got within reach of 53,500 people in 80 countries
+- [Département de l'Orne](https://elium.com/customer-stories/departement-de-lorne): How 25 IT professionals made every procedure current for 1,800 agents
+- [Docaposte](https://elium.com/customer-stories/docaposte): Docaposte's e-signature teams absorbed an eightfold surge in requests without escalating to level 2
+- [EFUS](https://elium.com/customer-stories/efus): How EFUS keeps 250 cities working together between the conferences
+- [Eura Nova](https://elium.com/customer-stories/eura-nova): How Eura Nova grew fivefold on one knowledge platform, without a single migration
+- [Ortis Laboratories](https://elium.com/customer-stories/ortis): How Ortis turned sixty years of plant expertise into something 125 people can actually use
+- [Oversight](https://elium.com/customer-stories/oversight): How Oversight turned knowledge sharing from an overhead into the product
+- [Partoo](https://elium.com/customer-stories/partoo): How Partoo got 100% of its people onto one knowledge base, and kept 80% of it fresh
+- [PMU](https://elium.com/customer-stories/pmu): How PMU's market watch team put 57 countries of competitive intelligence in one place
+- [Quantis](https://elium.com/customer-stories/quantis): Quantis captures ten times more project lessons and has 85% of its consultants on one platform
+- [Savencia](https://elium.com/customer-stories/savencia): How a decade of knowledge curation made AI work on the first try
+- [Serena](https://elium.com/customer-stories/serena): How venture capital firm Serena keeps 300 portfolio leaders from solving the same problem twice
+- [Servier](https://elium.com/customer-stories/servier): How a pharmaceutical giant built a central nervous system for competitive intelligence
+- [Touring Club Switzerland](https://elium.com/customer-stories/tcs): How Touring Club Switzerland woke up a dormant network by giving it a job
+- [VINCI Energies](https://elium.com/customer-stories/vinci-energies): How VINCI Energies' IT support team built one source of truth across 110 spaces
+
+## Resources
+
+- [Template library](https://elium.com/templates): Ready-made knowledge templates.
+- [Blog](https://elium.com/blog): All articles, including company and product news.
+
+## Blog: AI & Knowledge Infrastructure
+
+- [Why AI Projects Fail: The Knowledge Foundation Gap](https://elium.com/blog/why-ai-projects-fail-knowledge-foundation): Discover why 95% of AI projects fail. Learn how knowledge infrastructure gaps, not technology, cause AI failures and prevent scaling. Evidence-based analysis.
+- [How AI and Knowledge Management Work Together](https://elium.com/blog/ai-knowledge-management-work-together): Discover how AI and knowledge management create value together. Learn the foundations, architecture, and best practices for enterprise knowledge infrastructure.
+- [What Is RAG (Retrieval Augmented Generation)?](https://elium.com/blog/what-is-rag-retrieval-augmented-generation): Explore how RAG improves AI accuracy and reliability by connecting models to real-time knowledge infrastructure.
+
+## Blog: Guides
+
+- [Knowledge Management for IT Service Desk and Support Teams: The Complete Guide](https://elium.com/blog/knowledge-management-it-support-teams): SPIE ICS reduced information search time by 73% and cut critical incident processing time by 25%. Discover how structured knowledge management transforms IT support from reactive firefighting into scalable infrastructure.
+- [AI and Knowledge Management: The Complete Guide](https://elium.com/blog/unlocking-synergy-the-dynamic-relationship-between-knowledge-management-and-ai): Discover how AI and knowledge management work together. Complete hub covering RAG architecture, implementation strategies, and proven frameworks for success.
+- [How can you use technology to centralise all customer insights and speed-up innovation and new product development?](https://elium.com/blog/how-can-you-use-technology-to-centralise-all-customer-insights-and-speed-up-innovation-and-new-product-development): Read our free guide and discover how experts are tackling technology to centralise customer insights and speed up innovation.
+
+## Blog: Knowledge Management
+
+- [How to Write SOPs That Actually Work for Operations & Onboarding](https://elium.com/blog/streamlining-sops-a-comprehensive-guide-to-effective-knowledge-documentation): Create SOP that accelerate onboarding by 70%, preserve knowledge when employees leave, and reduce compliance risks by 60%. Research-backed guide for operations & HR teams.
+- [AI knowledge management: why enterprises fail at the foundation](https://elium.com/blog/ai-knowledge-management-why-enterprises-fail-at-the-foundation): A 140-person service desk at SPIE ICS: turnover halved, search time cut by 73%. The key? Build knowledge management before you touch AI.
+- [How AI Ensures Accuracy and Timeliness in Your Knowledge Base](https://elium.com/blog/how-ai-ensures-accuracy-and-timeliness-in-your-knowledge-base): Discover how AI ensures accuracy & timeliness in your knowledge base. Elium leverages AI for automated updates, enhanced search, and validation. Learn more!
+- [AI-Powered Knowledge Management: Elium’s Next Big Step](https://elium.com/blog/discover-eliums-ai-powered-enhancements-the-next-step-in-knowledge-management): Discover Elium's AI-powered knowledge management: Instant Answer AI, Smart AI Editor & Smart Assistants for enhanced productivity. Contact us!
+- [Enhancing Productivity with RAG and LLMs in Knowledge Management Software](https://elium.com/blog/enhancing-productivity-with-rag-and-llms-in-knowledge-management-software): Boost productivity with RAG & LLMs in Elium knowledge management software. Get real-time, accurate insights. Read our blog post from Feb 01!
+- [No AI without Knowledge : the synergy between KM Software and LLMs](https://elium.com/blog/the-synergy-of-knowledge-management-software-and-llms-in-modern-workplaces): Explore how Knowledge Management Software and LLMs revolutionize modern workplaces. Published Jan 23, 2024. Streamline workflows & boost decisions!
+- [AI Chatbots : Enhancing Customer Interactions and Knowledge Transfer](https://elium.com/blog/ai-chatbots-in-sales-enhancing-customer-interactions-and-knowledge-transfer): Explore how AI chatbots revolutionize sales interactions and knowledge transfer. Discover Elium, an AI-powered solution for seamless knowledge management.
+- [Leveraging AI for enhanced customer support and knowledge sharing](https://elium.com/blog/leveraging-ai-for-enhanced-customer-support-and-knowledge-sharing): Explore how AI transforms customer support & knowledge management. Discover AI-driven solutions for better customer experiences & efficient knowledge sharing.
+- [AI-powered knowledge management: Building and sustaining healthy knowledge bases](https://elium.com/blog/ai-powered-knowledge-management-building-and-sustaining-healthy-knowledge-bases): Unlock the power of AI in knowledge management. Discover how Elium enhances knowledge base health and productivity.
+- [Unlocking success: The crucial role of Knowledge Management in scaling corporations](https://elium.com/blog/unlocking-success-the-crucial-role-of-knowledge-management-in-scaling-corporations): Discover the crucial role of knowledge management in scaling corporations and how Elium empowers scaling organisations.
+- [Synchronous vs. asynchronous communication: All you need to know to optimise remote teams](https://elium.com/blog/synchronous-vs-asynchronous-communication-all-you-need-to-know-to-optimise-remote-teams): Discover the key to optimising remote teams: synchronous vs. asynchronous communication. Find the right balance for productivity and efficiency.
+- [7-Strategy approach to nurture knowledge sharing in your organisation](https://elium.com/blog/7-strategy-approach-to-nurture-knowledge-sharing-in-your-organisation): Learn how to nurture knowledge sharing in your organization with our 7-strategy approach. Boost productivity, lower operational costs and promote innovation.
+- [The knowledge advantage: Why effective knowledge management is essential for large corporations](https://elium.com/blog/the-knowledge-advantage-why-effective-knowledge-management-is-essential-for-large-corporations): Learn how big corporations gain a competitive edge with effective knowledge management. Discover benefits, challenges, & strategies for success.
+- [4 practical steps to an effective knowledge transfer plan ](https://elium.com/blog/4-practical-steps-to-an-effective-knowledge-transfer-plan): Learn 4 practical steps to create an effective knowledge transfer plan. Avoid losing company knowledge when employees leave. Streamline staffing changes.
+- [7 team-focused steps to an effective change management](https://elium.com/blog/7-team-focused-steps-to-an-effective-change-management): Discover 7 team-focused steps for successful change management in this insightful article.
+- [7 Major workplace communication issues and how to solve them](https://elium.com/blog/7-major-workplace-communication-issues-and-how-to-solve-them): Solve workplace communication issues! Explore causes like info overload & silos, and get solutions to boost engagement & collaboration. Learn more!
+- [Understanding the Differences Between Data, Information and Knowledge](https://elium.com/blog/understanding-the-differences-between-data-information-and-knowledge): There are three generic things we usually refer to when we use the words ‘data’, ‘information’ and ‘knowledge’. Let's find out the differences.
+- [What is procedural knowledge and how you can make the most of it?](https://elium.com/blog/what-is-procedural-knowledge-and-how-you-can-make-the-most-of-it): Understand procedural knowledge: the 'how-to' for tasks and skills. Learn how to make the most of this practical knowledge.
+- [4 Benefits of a Learning Organisation](https://elium.com/blog/4-benefits-of-a-learning-organisation): Most organizations want to grow, improve efficiency, and stay ahead of the competition. Learn how a learning organization helps you achieve this!
+- [Knowledge Sharing Vs Knowledge Management](https://elium.com/blog/knowledge-sharing-vs-knowledge-management): As a company executive or even a knowledge manager yourself, you have likely heard the terms knowledge management and knowledge sharing thrown around before.
+- [Enabling Knowledge Sharing for Efficient Customer Success Teams](https://elium.com/blog/enabling-knowledge-sharing-for-efficient-customer-success-teams): Read our brief article to discover six benefits of knowledge sharing for customer success teams.
+- [How to Build an Efficient Research Repository for Your Team](https://elium.com/blog/how-to-build-an-efficient-research-repository-for-your-team): UX research is an essential part of any successful business. You can’t deliver excellent products and services without listening to users’ voices.
+- [Top 5 benefits of fostering knowledge sharing across your entire company](https://elium.com/blog/benefits-of-fostering-knowledge-sharing): Knowledge sharing is vital for companies. Learn the 5 most important benefits of fostering knowledge sharing across your company in this article.
+- [Top 3 Tips To Ensure Knowledge Is Not Lost When An Employee Leaves Your Company](https://elium.com/blog/top-3-tips-to-ensure-knowledge-is-not-lost-when-an-employee-leaves-your-company): Understand the value of institutional knowledge management and use our three tips to preserve it proactively.
+- [Working remotely: One year after](https://elium.com/blog/working-remotely-one-year-after): Elium simplifies knowledge sharing for remote teams. Learn how we help businesses thrive, even in a crisis. Start your free 14-day trial!
+- [The 5 Big Differences Between a Knowledge Base and Knowledge Sharing](https://elium.com/blog/difference-between-knowledge-base-and-sharing): Choose between a knowledge base or a knowledge sharing platform. Learn the 5 key differences to manage your organization's information effectively.
+- [Intranet, Wiki, or Knowledge Management Platform – What’s the Difference?](https://elium.com/blog/difference-between-intranet-wiki-knowledge-management): You can’t run an organization without internal knowledge sharing and collaboration. However, not all knowledge sharing is created equally.
+- [What is implicit knowledge and how is it different from tacit knowledge?](https://elium.com/blog/what-is-implicit-knowledge-how-is-it-different-from-tacit-knowledge): The most underutilized form of knowledge in any organization is implicit knowledge. Read our article to learn more.
+- [The 3 types of knowledge you need to capture](https://elium.com/blog/3-types-of-knowledge): The Difference Between Explicit, Implicit, and Tacit Knowledge (and Why You Need Them All)
+- [How to Know If Your Knowledge Sharing Efforts Are Working?](https://elium.com/blog/how-to-know-if-knowledge-sharing-efforts-are-working): Knowledge sharing is a smart way to share information. But how can you prove its value? Discover 3 key metrics to track success. Get started now!
+- [Monitoring Your Platform Just Got Easier](https://elium.com/blog/monitoring-your-platform-easier): Knowledge management is the key to overcoming communication challenges in your business, removing silos that limit your team’s potential.
+- [Explicit Knowledge – 3 Keys to Great Documentation](https://elium.com/blog/explicit-knowledge-keys-to-great-documentation): If you want employees to understand and act on explicit knowledge, you need an explicit knowledge management strategy.
+- [Tacit Knowledge – How to Capture and Codify It for Your Employees](https://elium.com/blog/tacit-knowledge-how-to-capture-and-codify-for-employees): As hard to communicate as tacit knowledge is, it’s essential that you find ways to capture it and make it usable by your team members.
+- [6 Reasons Your Staff Needs A Single Source Of Truth](https://elium.com/blog/reasons-your-staff-needs-single-source-of-truth): Now’s the time to get your data problem under control. It all starts with a single source of truth (SSOT).
+- [A guide to launching your knowledge sharing platform](https://elium.com/blog/how-to-lauch-knowledge-sharing-platform): Launching a knowledge sharing platform to your employees can be a big project, and needs good preparation.
+- [Measuring satisfaction on your knowledge-sharing platform](https://elium.com/blog/measuring-knowledge-sharing-satisfaction): How to measure satisfaction on your knowledge-sharing platform. Covers objectives, a three-part question framework, and tips to maximise your response rate.
+- [5 Reasons Collaboration Fails](https://elium.com/blog/reasons-collaboration-fails-knowledge-sharing): Organisations need collaboration more than ever, but it’s often confused for teamwork, or overlooked as simply cooperation.
+- [Knowledge curation in the age of information overload](https://elium.com/blog/knowledge-curation-during-age-information-overload): Digital workplace tools are evolving and the rise of Slack is boosting competition around enterprise communication platforms.
+- [15 tips to help you choose the right name for your knowledge sharing platform](https://elium.com/blog/choose-right-name-knowledge-sharing-platform): Choosing a name for your knowledge sharing platform is a crucial final step. Get 15 tips to help you pick the perfect name!
+- [8 questions to evaluate your knowledge sharing project](https://elium.com/blog/evaluate-your-knowledge-sharing-project): Knowledge-sharing systems need tailoring. Use our 8 questions to define your needs before implementing solutions. Get started now!
+
+## Blog: Product News
+
+- [10 ways our AI knowledge management software got smarter](https://elium.com/blog/10-ways-our-ai-knowledge-management-software-got-smarter): Discover 10 powerful updates to Elium's AI knowledge management software: AI-powered search, ITSM integration, decision trees, and more.
+- [What is new at Elium – latest product updates](https://elium.com/blog/what-is-new-at-elium-latest-product-updates): Discover Elium's latest updates from February 2024! Get instant answers with Answer AI, enhance content, and ensure approval. Explore new features now!
+- [How we gave superpowers to our search with ChatGPT 💪](https://elium.com/blog/how-we-gave-superpowers-to-our-search-with-chatgpt): Elium's groundbreaking use of GPT: Discover how we made use of our upcoming AI feature intenrally, to superpower our search.
+- [Your knowledge platform is as good as the quality of your content](https://elium.com/blog/your-knowledge-platform-is-as-good-as-the-quality-of-your-content): Ensure content quality with Elium's NEW Approval Feature, launched June 8th. Validate knowledge for accuracy before publishing. Get started now!
+
+## Optional
+
+- [Changelog](https://elium.com/changelog): Product updates and release notes.
+- [Expert services](https://elium.com/services): Methodology and hands-on support from senior experts.
+- [About](https://elium.com/about): Company history and team.
+- [Careers](https://elium.com/careers): Open roles.
+- [Sustainability](https://elium.com/sustainability): Environmental commitments.
+- [Brand and press](https://elium.com/brand-and-press): Logos and press resources.
+- [Legal](https://elium.com/legal): Terms, privacy and legal pages.

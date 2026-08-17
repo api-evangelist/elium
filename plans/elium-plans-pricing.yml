@@ -1,0 +1,65 @@
+generated: '2026-08-17'
+method: searched
+source: https://elium.com/pricing
+currency: EUR
+billing_note: >-
+  Prices shown are the yearly-billed per-user rate the pricing page displays ("save 17%" versus monthly).
+  Both self-serve tiers carry a 10-user minimum.
+api_access_finding: >-
+  THE API IS A PAID-TIER FEATURE. Elium's pricing page lists "full API access" on Enterprise only, and its
+  help centre states the GraphQL API is "available for all the Enterprise platform". Team and Corporate
+  customers cannot call the GraphQL API or the MCP server at all. This is a commercial gate, not a
+  technical one, and it is why no anonymous or trial-tier introspection of the contract is possible.
+plan_count: 3
+plans:
+- name: Team
+  price: 15
+  currency: EUR
+  period: month
+  unit: per user
+  billing: annual (yearly billing, "save 17%")
+  minimum_users: 10
+  included_admins: 1
+  api_access: false
+  mcp_access: false
+  sla: null
+  includes: [Content expiry reminders, AI editor, Structured templates, Decision trees, Multilingual
+      knowledge, Unlimited AI search]
+- name: Corporate
+  price: 20
+  currency: EUR
+  period: month
+  unit: per user
+  billing: annual (yearly billing, "save 17%")
+  minimum_users: 10
+  included_admins: 3
+  api_access: false
+  mcp_access: false
+  sla: null
+  includes: [Everything in Team, Multi-step approval workflows, Gap detection, Duplicate detection, Usage
+      dashboards, Custom AI tools, Browser extension, Self-service external portals, SSO, Audit trail]
+- name: Enterprise
+  price: null
+  price_model: custom
+  currency: EUR
+  period: null
+  unit: null
+  contact_required: true
+  contact_url: https://elium.com/demo
+  api_access: true
+  mcp_access: true
+  sla: 99.5% uptime
+  includes: [Everything in Corporate, Full API access, Custom AI assistants, Automated user provisioning,
+    Deep Microsoft 365 integration, Dedicated team, Priority support, Sovereign / SecNumCloud / private
+      cloud / on-premise hosting, 99.5% uptime SLA]
+trial:
+  available: true
+  credit_card_required: false
+  url: https://elium.com/free-trial
+  note: '"No credit card required"; the page pairs the trial with an onboarding call.'
+overage: null
+overage_note: No usage-based pricing, metering, or overage rates are published - pricing is per seat only.
+quotas_published: false
+quotas_note: >-
+  No API call quotas, storage quotas, or AI-query quotas are published on the pricing page. "Unlimited AI
+  search" is the only quota-shaped statement and it refers to the product UI, not the API.

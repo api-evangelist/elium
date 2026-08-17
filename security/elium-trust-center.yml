@@ -1,0 +1,98 @@
+generated: '2026-08-17'
+method: searched
+probe: true
+source: https://elium.com/trust
+url: https://elium.com/trust
+http_status: 200
+probed: '2026-08-17'
+sections:
+  overview: https://elium.com/trust
+  resources: https://elium.com/trust/resources
+  controls: https://elium.com/trust/controls
+  subprocessors: https://elium.com/trust/subprocessors
+  updates: https://elium.com/trust/updates
+security_contact: security@elium.com
+security_contact_note: >-
+  Published as a mailto link on both the trust overview ("Contact our security team") and the controls page
+  ("Email security team"). Elium states the mailbox "handles vendor reviews, RFPs, audits, and architecture
+  questions".
+certifications:
+- ISO/IEC 27001:2022
+- SecNumCloud
+- GDPR
+- EU AI Act
+- EcoVadis Silver
+certifications_not_claimed: [SOC 2, HIPAA, PCI DSS, FedRAMP, HDS]
+documents_on_request:
+  count: 8
+  process: >-
+    "Request the DPA in the Resources section above. We aim to counter-sign within five working days."
+  documents:
+  - Elium AI - technical details
+  - ISO 27001 certificate
+  - Statement of Applicability (ISO 27002:2022)
+  - Penetration test report (2025)
+  - Penetration test report (2024)
+  - Cyber insurance certificate (2026)
+  - Data Processing Agreement
+  - List of third-party providers
+  note: >-
+    None of the eight is downloadable without a request - the certificate itself, the SoA and both
+    penetration-test reports are gated behind a form. Only the certification names are public.
+controls:
+  url: https://elium.com/trust/controls
+  domains: [Physical Security, Network Security, Data Security, General Data Protection, Quality & Service,
+    Reversibility, 'Backup & Recovery']
+  highlights:
+  - control: Encryption in transit
+    detail: >-
+      "All data transfers enforce a secure connection (HTTPS with TLS 1.3 or TLS 1.2, using strong cipher
+      suites including AES-256-GCM and ChaCha20-Poly1305)."
+  - control: Security audits
+    detail: >-
+      "Penetration tests are conducted regularly by independent third parties and vulnerability scans are
+      automated. Findings are assessed and remediated per defined SLAs."
+  - control: Incident management
+    detail: >-
+      Severity classification, coordinated response, customer notification, and "priority-based SLAs with
+      defined acknowledgement and resolution targets"; every incident triggers a post-incident root-cause
+      and lessons-learned review.
+  - control: Enterprise SSO
+    detail: >-
+      "SAML2 and OpenID connectors are available for seamless enterprise SSO integration, including
+      ADFS/Microsoft."
+  - control: Support team access
+    detail: >-
+      Support access to a customer platform requires professional SSO, MFA and a time-limited random
+      password, with an audit-trail notification to both the employee and the customer's administrators.
+  - control: Availability
+    detail: >-
+      "The monthly uptime rate is guaranteed and monitored by an external service. Availability metrics are
+      published and contractually committed."
+  - control: Audit log
+    detail: Administrative and security events are preserved in a tamper-evident audit log.
+data_residency:
+  default: European Union - Google Cloud Platform, Belgium region, with redundancy across European data centres
+  sovereign: 3DS Outscale sovereign French cloud (SecNumCloud-qualified)
+  on_premise: supported (https://elium.com/on-premise)
+  policy: Hosting region is set per tenant and never mixed.
+ai_data_policy: >-
+  "Customer content is never used to train or fine-tune models - ours or our providers'. Generative-AI calls
+  run with zero data retention contractually enforced with every LLM provider."
+subprocessors:
+  url: https://elium.com/trust/subprocessors
+  count: 22
+  named:
+  - {name: Google Cloud Platform, region: EU, role: default compute and storage}
+  - {name: Aiven, region: EU, role: managed database hosting}
+  - {name: 3DS Outscale, region: EU (France), role: sovereign SecNumCloud-qualified cloud}
+  - {name: SparkPost, region: 'EU (Belgium)', role: email processing}
+  - {name: Mixpanel, region: 'EU (Netherlands)', role: product analytics}
+  - {name: Datadog, region: 'EU (Germany)', role: application logs}
+status_page: https://status.elium.com/
+evidence:
+- {source: 'https://elium.com/trust', http_status: 200, keywords: [ISO/IEC 27001:2022, SecNumCloud, GDPR,
+      EU AI Act, EcoVadis Silver, trust center, security@elium.com]}
+- {source: 'https://elium.com/trust/controls', http_status: 200, keywords: [penetration tests, vulnerability
+      scans, incident management, TLS 1.3, SAML2, OpenID, audit log, uptime]}
+- {source: 'https://elium.com/trust/subprocessors', http_status: 200}

@@ -1,0 +1,142 @@
+generated: '2026-08-17'
+method: derived
+source:
+- https://help.elium.com/en/articles/12767574-mcp
+- https://learn.elium.com/reference/
+note: >-
+  Binds each published Elium MCP tool to the GraphQL field that backs it. Elium publishes no OpenAPI, so
+  the REST column of the usual crosswalk does not exist: GraphQL is this provider's machine-readable core,
+  and every binding below is to a real field in the published GraphQL reference. The live MCP tools/list is
+  auth-gated on a customer tenant, so tool inputSchemas are not published - bindings are made on name and
+  documented semantics, corroborated by the GraphQL input types, and confidence is stated honestly.
+surfaces:
+  openapi:
+    present: false
+    note: >-
+      No OpenAPI anywhere. Probed the API host root (api.elium.com/openapi.json, /openapi.yaml,
+      /swagger.json, /v1/openapi.json, /api-docs, /docs, /redoc) and the docs host - all 404.
+  graphql:
+    endpoint: https://{platform}.elium.com/graphql
+    reference: https://learn.elium.com/reference/
+    introspection: gated
+    introspection_note: >-
+      Per-tenant endpoint; introspection requires an OAuth 2.0 token from a Connected App on that tenant.
+      No public/demo tenant exists - POSTing an introspection query to elium.elium.com, demo.elium.com and
+      app.elium.com all returned 404. The operation inventory in graphql/elium-graphql-operations.yml is
+      transcribed from the provider's own published reference instead.
+    operations: {queries: 17, mutations: 206, subscriptions: 18}
+  mcp:
+    endpoint: https://{platform}.elium.com/services/mcp
+    transport: http
+    auth: oauth
+    tools_list: gated
+    tools_list_note: >-
+      tools/list could not be called anonymously (no public tenant). The three tool names and descriptions
+      are verbatim from the provider's help article.
+crosswalk:
+- tool: FindRelevantArticles
+  category: search
+  binding: graphql
+  graphql: [MeAnswer.semanticSearch]
+  graphql_path: 'me { answer { semanticSearch(query: SemanticSearchQuery!) } }'
+  returns: SemanticSearchResponse
+  confidence: high
+  note: >-
+    The tool is documented as "a semantic (meaning-based) search of the knowledge base from a
+    natural-language question". MeAnswer.semanticSearch is the only semantic-search field in the schema,
+    described as "AI-powered semantic search", and its SemanticSearchQuery input takes exactly the shape
+    the tool needs: text (String!), limit (Int!), minScore (Int), method (AnswerMethod).
+- tool: FindSpecificArticles
+  category: search
+  binding: graphql
+  graphql: [Me.search]
+  graphql_path: 'me { search(query: StorySearchQuery!) }'
+  returns: StorySearchResponse
+  confidence: high
+  note: >-
+    The tool is documented as supporting keyword, template, date-range and custom sort. Me.search
+    ("Search content using a variety of criteria used for Advanced search") takes StorySearchQuery, whose
+    fields line up one-for-one: text (keyword), schemas (Elium's word for templates), dateRange
+    (StorySearchDateRangeFilter), sort (StorySearchSort!), plus spaces, tags, hashtags, langs, users,
+    facets, mediaTypes and limit/start paging.
+  alternates:
+  - {graphql: Space.search, reason: same StorySearchResponse scoped to one space}
+  - {graphql: SmartAssistant.semanticSearch, reason: same search scoped to a SmartAssistant corpus}
+- tool: ReadFullArticle
+  category: read
+  binding: graphql
+  graphql: [story]
+  graphql_path: 'story(slug: Int!)'
+  returns: Story
+  confidence: high
+  note: >-
+    The tool "retrieves complete article content with key attributes". The story(slug: Int!) root query -
+    "Get a story via its slug (integer id)" - returns the Story object with 54 fields including version,
+    tags, space, user, status and schema. Elium's "article" is a Story in the schema.
+mcp_only: []
+mcp_only_note: >-
+  All three published tools map onto real GraphQL fields; the MCP server is a read-only projection of the
+  GraphQL core, not an independent capability set.
+graphql_only:
+- capability: content authoring and lifecycle
+  operation_count: 43
+  examples: [storyPost, storyEdit, storyDelete, storyArchive, storyExpire, storyTranslate, storyLock,
+    storyPin, storyBroadcast, storyPublicShare, storyApprovalRequest, storyApprovalStatus, storyChangeOwner]
+  reason: MCP exposes no write tools; every mutation is GraphQL-only.
+- capability: space and space-group administration
+  operation_count: 26
+  examples: [spaceAdd, spaceUpdate, spaceDelete, spaceMemberAdd, spaceMemberRole, spaceGroupAdd]
+  reason: No MCP tool.
+- capability: instance / tenant administration
+  operation_count: 23
+  examples: [instanceSettingsUpdate, instanceSlackUpdate, instanceMicrosoftTeamsUpdate, instanceExport,
+    instanceScimConfigUpdate, instanceSsoConfigUpdate]
+  reason: No MCP tool.
+- capability: current-user profile, preferences, MFA and tokens
+  operation_count: 15
+  examples: [meActivateTwoFactor, meRemoveTwoFactor, mePasswordChange, mePreferencesUpdate, meServiceToken]
+  reason: No MCP tool.
+- capability: smart assistants
+  operation_count: 13
+  examples: [smartAssistantCreate, smartAssistantUpdate, smartAssistantDelete, smartAssistantOrder,
+    smartConversationCreate, smartConversationPostMessage, smartFeedCreate]
+  reason: >-
+    An agent can query a SmartAssistant's corpus over GraphQL but cannot create or configure one over MCP.
+- capability: templates / story schemas
+  operation_count: 5
+  examples: [storySchemaCreate, storySchemaUpdate, schemaAttributeCreate, storySchemaConvert]
+  reason: No MCP tool.
+- capability: comments, annotations, likes, tags
+  operation_count: 20
+  verified: every operationId listed below exists verbatim in the published reference
+  examples: [commentPost, commentEdit, commentLike, annotationCreate, annotationEdit, storyTag, tagCreate,
+    tagUpdate, hashtagCreate, contentLike]
+  reason: No MCP tool.
+- capability: users, teams, invitations, connected apps
+  operation_count: 15
+  examples: [userRegister, userEdit, teamCreate, teamMemberAdd, connectedAppCreate, connectedAppDelete]
+  reason: No MCP tool.
+- capability: event subscriptions (real-time)
+  operation_count: 18
+  examples: [storyUpdated, commentAdded, notificationAdded, storyLocked]
+  reason: >-
+    MCP has no subscription surface; live change notification is GraphQL-subscriptions-only. See
+    asyncapi/elium-events.yml.
+- capability: read queries with no tool
+  operation_count: 14
+  examples: [space, spaceGroup, user, storySchema, integrations, instance, instanceAuth, organization,
+    node, nodes, publicStory, publicInstance, storyReshares, statusStory]
+  reason: >-
+    Only story is reachable through MCP. An agent using MCP alone cannot resolve a space, a user, or a
+    template definition.
+coverage:
+  tools_named: 3
+  tools_bound: 3
+  tools_unbound: 0
+  mcp_only: 0
+  graphql_operations_total: 241
+  graphql_operations_with_a_tool: 3
+  graphql_coverage_pct: 1.2
+  read_write_asymmetry: >-
+    3 of 3 MCP tools are read-only; 206 of 241 GraphQL operations are mutations. The agent surface is
+    deliberately read-only.

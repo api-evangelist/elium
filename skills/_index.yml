@@ -1,0 +1,45 @@
+generated: '2026-08-17'
+method: generated
+source:
+- https://learn.elium.com/reference/
+- https://learn.elium.com/en/api/
+- https://help.elium.com/en/articles/12767574-mcp
+note: >-
+  Elium publishes no OpenAPI, so these skills are grounded in its published GraphQL reference instead. Every
+  operation named in every skill was checked against learn.elium.com/reference/ and exists there verbatim;
+  the five operations Elium marks Deprecated (statusStory, storyApprovalEdit, storyMigrate, userFollow,
+  userPresenceUpdated) are called out as such and never recommended. No provider-published Agent Skills or
+  AGENTS.md file exists to save verbatim - searched the docs, help centre and llms.txt.
+grounded_in: graphql
+skill_count: 3
+skills:
+- file: elium-search-knowledge-base.md
+  name: Search the Elium knowledge base and read an article
+  api: graphql/elium-graphql-operations.yml
+  surfaces: [graphql, mcp]
+  operations: [me.answer.semanticSearch, me.search, story, searchFeedback]
+  access: read
+- file: elium-publish-a-story.md
+  name: Publish and update an Elium story
+  api: graphql/elium-graphql-operations.yml
+  surfaces: [graphql]
+  operations: [storyPost, storyEdit, storySpace, storyApprovalRequest, storyApprovalStatus, storyExpire,
+    storyLock, storyUnlock, story]
+  access: write
+- file: elium-connect-an-ai-assistant.md
+  name: Connect an AI assistant to Elium over MCP
+  api: mcp/elium-mcp.yml
+  surfaces: [mcp, oauth]
+  operations: [FindRelevantArticles, FindSpecificArticles, ReadFullArticle, connectedAppCreate]
+  access: read
+cross_cutting_rules_every_skill_carries:
+- The endpoint is per tenant - https://{platform}.elium.com/... There is no shared vendor host and a tenant
+  name must never be guessed.
+- The API and the MCP server are Enterprise-plan only; Team and Corporate cannot call them.
+- OAuth 2.0 bearer, one scope (apiv1), 3600-second access tokens, no API keys.
+- HTTP 200 is not success - handled errors are in-band (top-level GraphQL errors, or
+  data.<mutation>.errors[] with __typename and path).
+- There is NO idempotency mechanism, so no write may be blind-retried; verify the effect first.
+- No rate limits and no rate-limit response headers are published - throttling is unobservable.
+- Everything is evaluated with the token user's own permissions, so an empty result may mean "not
+  permitted" rather than "not found".

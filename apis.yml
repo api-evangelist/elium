@@ -1,19 +1,96 @@
 aid: elium
 name: Elium
-description: 'Elium is a company surfaced as a portfolio company of serena and added to the API Evangelist
-  network as a stub for enrichment. Sector: saas. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Elium is a European enterprise knowledge-management SaaS platform, founded in 2007 as Knowledge Plaza and
+  renamed Elium in 2017, headquartered in Louvain-la-Neuve, Belgium. Teams capture, validate and govern
+  company knowledge as structured articles - which Elium calls "stories" - inside spaces, using templates,
+  multi-step approval, expiration management, duplicate and gap detection, and in-place multilingual
+  translation. The same governed corpus is then served to people and to AI agents through AI search, smart
+  assistants, external portals and integrations. Programmatically Elium is a GraphQL provider, not a REST
+  one: each customer platform serves its own per-tenant GraphQL endpoint with 17 queries, 206 mutations and
+  18 subscriptions, documented in a fully published SpectaQL reference, secured with OAuth 2.0 on a single
+  apiv1 scope. In June 2026 Elium added a per-tenant remote Model Context Protocol server exposing three
+  read-only knowledge tools to ChatGPT, Claude and custom agents. API and MCP access are Enterprise-plan
+  only. Elium is ISO/IEC 27001:2022 certified and SecNumCloud-qualified, with EU-default and sovereign
+  French hosting options.
+image: https://elium.com/logos/elium-logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/elium/refs/heads/main/apis.yml
 x-type: company
 x-source: serena-portfolio
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-08-17'
 modified: '2026-08-17'
 tags:
 - Company
-- Saas
-apis: []
+- SaaS
+- Knowledge Management
+- Knowledge Base
+- Enterprise Search
+- AI Search
+- GraphQL
+- MCP
+- Collaboration
+- Documentation
+- RAG
+- Europe
+apis:
+- name: Elium GraphQL API
+  description: >-
+    Elium's single GraphQL endpoint, served per tenant at https://{platform}.elium.com/graphql. 17 queries,
+    206 mutations and 18 subscriptions over 1128 type definitions, covering stories (content), spaces,
+    users, templates/schemas, tags, comments, annotations, alerts, smart assistants and tenant
+    administration. OAuth 2.0 bearer with one scope, apiv1. Relay cursor connections for pagination; errors
+    are returned in-band on each mutation payload rather than as HTTP status codes. No OpenAPI is published
+    - GraphQL is the contract. Enterprise plan only.
+  humanURL: https://learn.elium.com/en/api/
+  baseURL: https://{platform}.elium.com/graphql
+  tags:
+  - GraphQL
+  - Knowledge Management
+  - Enterprise Search
+  properties:
+  - type: Documentation
+    url: https://learn.elium.com/en/api/
+  - type: APIReference
+    url: https://learn.elium.com/reference/
+  - type: GettingStarted
+    url: https://learn.elium.com/en/api/getting_started/quick_start
+  - type: GraphQL
+    url: graphql/elium-graphql-operations.yml
+  - type: Authentication
+    url: authentication/elium-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elium-scopes.yml
+  - type: Conventions
+    url: conventions/elium-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elium-error-codes.yml
+  - type: DataModel
+    url: data-model/elium-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elium-rate-limits.yml
+- name: Elium MCP Server
+  description: >-
+    A remote Model Context Protocol server, announced 3 June 2026, served per tenant at
+    https://{platform}.elium.com/services/mcp with OAuth 2.0 authorization and optional Dynamic Client
+    Registration. Three published tools, all read-only - FindRelevantArticles (semantic search),
+    FindSpecificArticles (filtered search) and ReadFullArticle - each running with the permissions of the
+    authenticated user. Documented setup paths for ChatGPT and Claude. Enterprise plan only.
+  humanURL: https://help.elium.com/en/articles/12767574-mcp
+  baseURL: https://{platform}.elium.com/services/mcp
+  tags:
+  - MCP
+  - AI Search
+  - RAG
+  properties:
+  - type: MCPServer
+    url: mcp/elium-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/elium-tool-crosswalk.yml
+  - type: Documentation
+    url: https://help.elium.com/en/articles/12767574-mcp
+  - type: Authentication
+    url: authentication/elium-authentication.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -21,4 +98,132 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://www.elium.com/
+  url: https://elium.com/
+- type: DeveloperPortal
+  url: https://learn.elium.com/en/api/
+- type: Documentation
+  url: https://learn.elium.com/en/api/
+- type: APIReference
+  url: https://learn.elium.com/reference/
+- type: GettingStarted
+  url: https://learn.elium.com/en/api/getting_started/quick_start
+- type: Support
+  url: https://help.elium.com/en/
+- type: Blog
+  url: https://elium.com/blog
+- type: Pricing
+  url: https://elium.com/pricing
+- type: SignUp
+  url: https://elium.com/free-trial
+- type: Login
+  url: https://elium.com/login
+- type: TermsOfService
+  url: https://elium.com/legal/website-terms-of-use/
+- type: PrivacyPolicy
+  url: https://elium.com/legal/privacy-policy/
+- type: StatusPage
+  url: https://status.elium.com/
+- type: ChangeLog
+  url: https://elium.com/changelog
+- type: ChangeLog
+  url: changelog/elium-changelog.yml
+- type: Security
+  url: https://elium.com/trust/controls
+- type: Compliance
+  url: https://elium.com/trust
+- type: MCPServer
+  url: mcp/elium-mcp.yml
+- type: LLMsTxt
+  url: llms/elium-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Authentication
+  url: authentication/elium-authentication.yml
+- type: OAuthScopes
+  url: scopes/elium-scopes.yml
+- type: Conventions
+  url: conventions/elium-conventions.yml
+- type: ErrorCatalog
+  url: errors/elium-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/elium-lifecycle.yml
+- type: Conformance
+  url: conformance/elium-conformance.yml
+- type: DataModel
+  url: data-model/elium-data-model.yml
+- type: Packages
+  url: packages/elium-packages.yml
+- type: Plans
+  url: plans/elium-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/elium-rate-limits.yml
+- type: TrustCenter
+  url: security/elium-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/elium-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/elium-domain-security.yml
+x-api-base:
+  verdict: templated-by-design
+  repair_tool_verdict: no-usable-base
+  note: >-
+    repair-api-bases.py reports "no-usable-base" because BOTH bases template the HOST, not just a path
+    segment. That verdict is correct about the shape and wrong about the cause: Elium has no shared API
+    host to record. It deploys one platform per subdomain and its own documentation uses placeholder tenant
+    names throughout - my-platform.elium.com in the quick start, mycompany.elium.com in the token example,
+    your-platform-name.elium.com in the MCP article. api.elium.com resolves but serves an application 404
+    on every path, including every spec path probed, so it is not the base either. Leaving {platform} in
+    place is the accurate record; substituting any concrete tenant would invent a customer's hostname. Do
+    not "repair" this in a later round.
+  evidence:
+  - {url: 'https://api.elium.com/', status: 404}
+  - {url: 'https://api.elium.com/openapi.json', status: 404}
+  - {url: 'https://demo.elium.com/graphql', status: 404, method: POST}
+  - {url: 'https://demo.elium.com/services/mcp', status: 404, method: POST}
+  checked: '2026-08-17'
+x-pointers-deliberately-absent:
+  note: >-
+    Recorded so a later round does not re-litigate these, and does not add a pointer the provider has not
+    earned. Each was probed or searched in this pass.
+  OpenAPI: >-
+    None exists. Probed api.elium.com/openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json,
+    /api-docs, /docs, /redoc plus the docs host - all 404. GraphQL is this provider's contract.
+  AgentCard: >-
+    /.well-known/agent-card.json and legacy /.well-known/agent.json probed on elium.com, api.elium.com,
+    learn.elium.com and help.elium.com - 404 everywhere except learn.elium.com, which answers 200 with an
+    HTML docs shell for every /.well-known/* path. No card, so per the pipeline contract no a2a/ artifact
+    was authored.
+  WellKnown: >-
+    Elium serves no /.well-known/ document of its own. The probe is recorded in
+    well-known/elium-well-known.yml with every status; no pointer, because a file documenting an absence
+    must not be scored as a presence.
+  SecurityTxt: >-
+    Absent on elium.com and api.elium.com. The 200 text/plain security.txt on help.elium.com is INTERCOM's
+    (Canonical app.intercom.com, contacts bugcrowd.com/intercom) because the help centre is Intercom-hosted.
+  Idempotency: >-
+    Elium has no idempotency mechanism. Searched all 206 mutations, 244 input types and the API guides for
+    /idempoten/i - zero matches. Retrying storyPost creates a second story.
+  SDKs: >-
+    No client library in any language on npm, PyPI, RubyGems, Packagist, crates.io, pkg.go.dev, Maven or
+    NuGet. The four first-party @eliumhq npm packages are internal build tooling, newest release 2020-01-15.
+  Webhooks: >-
+    No outbound webhooks are advertised. The event surface is 18 GraphQL subscriptions, recorded in
+    asyncapi/elium-events.yml without an AsyncAPI or Webhooks pointer.
+  AsyncAPI: No AsyncAPI document is published.
+  Deprecation: >-
+    Five operations carry a Deprecated marker in the reference, but there is no deprecation policy page, no
+    notice period and no RFC 8594 Sunset support to point at.
+  GitHubOrganization: >-
+    github.com/elium and github.com/Elium belong to Molecule Science (molecule-science.com), a different
+    company. Elium's own code is on GitLab at gitlab.com/elium/product, which returns 403 anonymously.
+  Postman: www.postman.com/eliumhq returns only the Postman SPA shell - no public workspace or collection.
+  Roadmap: elium.com/roadmap returns 404.
+  CLI: No first-party CLI is published.
+  Sandbox: >-
+    No sandbox, test mode, or test-vs-live key separation is published. There is a free trial of the product
+    but no developer test environment.
+x-enrichment:
+  date: '2026-08-17'
+  status: enriched
+  artifacts_added: 23
+  pass: local-v1
