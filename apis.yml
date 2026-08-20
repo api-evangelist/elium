@@ -22,6 +22,19 @@ created: '2026-08-17'
 modified: '2026-08-17'
 tags:
 - Company
+- Software-as-a-Service
+- Knowledge-Management
+- Knowledge Base
+- Enterprise Search
+- AI Search
+- GraphQL
+- MCP
+- Collaboration
+- Documentation
+- RAG
+- Europe
+tags_raw:
+- Company
 - SaaS
 - Knowledge Management
 - Knowledge Base
@@ -45,6 +58,10 @@ apis:
   humanURL: https://learn.elium.com/en/api/
   baseURL: https://{platform}.elium.com/graphql
   tags:
+  - GraphQL
+  - Knowledge-Management
+  - Enterprise Search
+  tags_raw:
   - GraphQL
   - Knowledge Management
   - Enterprise Search
