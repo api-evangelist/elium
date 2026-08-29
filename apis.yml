@@ -13,6 +13,17 @@ description: >-
   read-only knowledge tools to ChatGPT, Claude and custom agents. API and MCP access are Enterprise-plan
   only. Elium is ISO/IEC 27001:2022 certified and SecNumCloud-qualified, with EU-default and sovereign
   French hosting options.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://elium.com/logos/elium-logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/elium/refs/heads/main/apis.yml
 x-type: company
