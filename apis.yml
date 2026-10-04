@@ -50,7 +50,7 @@ modified: '2026-08-17'
 tags:
 - Company
 - Software-as-a-Service
-- Knowledge-Management
+- Knowledge Management
 - Knowledge Base
 - Enterprise Search
 - AI Search
@@ -73,6 +73,7 @@ tags_raw:
 - Documentation
 - RAG
 - Europe
+- Knowledge-Management
 apis:
 - name: Elium GraphQL API
   description: >-
@@ -86,12 +87,13 @@ apis:
   baseURL: https://{platform}.elium.com/graphql
   tags:
   - GraphQL
-  - Knowledge-Management
+  - Knowledge Management
   - Enterprise Search
   tags_raw:
   - GraphQL
   - Knowledge Management
   - Enterprise Search
+  - Knowledge-Management
   properties:
   - type: Documentation
     url: https://learn.elium.com/en/api/
