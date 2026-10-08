@@ -63,3 +63,33 @@ quotas_published: false
 quotas_note: >-
   No API call quotas, storage quotas, or AI-query quotas are published on the pricing page. "Unlimited AI
   search" is the only quota-shaped statement and it refers to the product UI, not the API.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - seat
+  units:
+  - seat
+  plans:
+  - name: Team
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Corporate
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Enterprise
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
